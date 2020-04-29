@@ -1,0 +1,14 @@
+// Specific: R5F102x8
+define symbol _FLASH_END    = 0x01FFF;
+define symbol _RAM_START    = 0xFFC00;
+define symbol _DATAFLASH_SZ = 2k;
+export symbol _DATAFLASH_SZ;
+
+// Flash Libraries Self RAM
+define symbol _T01_FSL_SZ   = 0x80;
+define symbol _T01_FDL_SZ   = 0x0;
+define symbol _T02_FDL_SZ   = 0x0;
+define symbol _T02_EEL_SZ   = 0x0;
+define symbol _T04_FDL_SZ   = 0x0;
+
+include "common.icf";

@@ -1,0 +1,97 @@
+if (isdefinedsymbol(__RESERVE_T01_FSL))
+{
+    if (__RESERVE_T01_FSL == 1)
+    {
+        define region T01_FSL = mem:[from _RAM_START size _T01_FSL_SZ];
+    }
+    else
+    {
+        define region T01_FSL = NOWHERE;
+    }
+}
+else
+{
+   define region T01_FSL = NOWHERE;
+}
+
+if (isdefinedsymbol(__RESERVE_T01_FDL))
+{
+    if (__RESERVE_T01_FDL == 1)
+    {
+        define region T01_FDL = mem:[from _RAM_START size _T01_FDL_SZ];
+    }
+    else
+    {
+        define region T01_FDL = NOWHERE;
+    }
+}
+else
+{
+   define region T01_FDL = NOWHERE;
+}
+
+if (isdefinedsymbol(__RESERVE_T01_EEL))
+{
+    if (__RESERVE_T01_EEL == 1)
+    {
+        define region T01_EEL = mem:[from _RAM_START size _T01_EEL_SZ];
+    }
+    else
+    {
+        define region T01_EEL = NOWHERE;
+    }
+}
+else
+{
+   define region T01_EEL = NOWHERE;
+}
+
+if (isdefinedsymbol(__RESERVE_T02_FDL))
+{
+    if (__RESERVE_T02_FDL == 1)
+    {
+        define region T02_FDL = mem:[from _RAM_START size _T02_FDL_SZ];
+    }
+    else
+    {
+        define region T02_FDL = NOWHERE;
+    }
+}
+else
+{
+   define region T02_FDL = NOWHERE;
+}
+
+if (isdefinedsymbol(__RESERVE_T02_EEL))
+{
+    if (__RESERVE_T02_EEL == 1)
+    {
+        define region T02_EEL = mem:[from _RAM_START size _T02_EEL_SZ];
+    }
+    else
+    {
+        define region T02_EEL = NOWHERE;
+    }
+}
+else
+{
+   define region T02_EEL = NOWHERE;
+}
+
+if (isdefinedsymbol(__RESERVE_T04_FDL))
+{
+    if (__RESERVE_T04_FDL == 1)
+    {
+        define region T04_FDL = mem:[from _RAM_START size _T04_FDL_SZ];
+    }
+    else
+    {
+        define region T04_FDL = NOWHERE;
+    }
+}
+else
+{
+   define region T04_FDL = NOWHERE;
+}
+
+define region SELF_RAM      = T01_FSL | T01_FDL | T01_EEL | T02_FDL | T02_EEL | T04_FDL;

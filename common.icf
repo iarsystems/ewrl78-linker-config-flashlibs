@@ -1,0 +1,216 @@
+//-------------------------------------------------------------------------
+//      Common Configuration File for ICF Trio
+//
+//      IAR ILinker's ICF file format version 2
+//      Compatible with IAR Embedded Workbench for Renesas RL78 version 3+
+//
+//      Version 1.02
+//-------------------------------------------------------------------------
+
+// Required symbol for the newer ICF format in IAR Embedded Workbench for RL78 v3.x and later to work
+// (comment out the following symbol if using IAR Embedded Workbench for RL78 v2.x)
+define exported symbol __link_file_version_2 = 1;
+
+initialize by copy with simple ranges, packing = auto { rw, R_DATA, R_BSS, R_DATAF, R_BSSF, R_SDATA, R_SBSS };
+initialize manually { R_CONST, ro section .const, ro section .switch };
+do not initialize   { section *.noinit };
+
+define memory mem with size = 1M;
+
+// Common Symbols:
+define symbol _FLASH_START  = 0x000D8;
+define symbol _RAM_END      = 0xFFE1F;
+
+define region NOWHERE = mem:[from 0x0 size 0];
+
+if (isdefinedsymbol(__RESERVE_OCD_ROM))
+{
+  if (__RESERVE_OCD_ROM == 1)
+  {
+    define region OCD_ROM_AREA = mem:[from (_FLASH_END & 0x0FE00) to (_FLASH_END)];
+    define region EXCLUDE_OCD_MIRROR = mem:[from (start(OCD_ROM_AREA) | 0xF0000) size 0x200];
+  }
+  else
+  {
+    define region OCD_ROM_AREA = NOWHERE;
+    define region EXCLUDE_OCD_MIRROR = NOWHERE;
+  }
+}
+else
+{
+  define region OCD_ROM_AREA = NOWHERE;
+  define region EXCLUDE_OCD_MIRROR = NOWHERE;
+}
+
+include "self_ram.icf";
+
+define region OCD_TRACE_RAM = NOWHERE;
+define region HOTPLUGIN_RAM = NOWHERE;
+
+define region EXCLUDE_ROM_REGION = OCD_ROM_AREA;
+define region EXCLUDE_RAM_REGION = HOTPLUGIN_RAM | OCD_TRACE_RAM | SELF_RAM;
+
+define region ROM_near = mem:[from _FLASH_START to (_FLASH_END & 0x0FFFF)]  - EXCLUDE_ROM_REGION;
+define region ROM_far  = mem:[from _FLASH_START to _FLASH_END]              - EXCLUDE_ROM_REGION;
+define region ROM_huge = mem:[from _FLASH_START to _FLASH_END]              - EXCLUDE_ROM_REGION;
+
+define region SADDR    = mem:[from 0xFFE20 to 0xFFEDF]         - EXCLUDE_RAM_REGION;
+define region RAM_near = mem:[from _RAM_START to _RAM_END]     - EXCLUDE_RAM_REGION;
+define region RAM_far  = mem:[from _RAM_START to _RAM_END]     - EXCLUDE_RAM_REGION;
+define region RAM_huge = mem:[from _RAM_START to _RAM_END]     - EXCLUDE_RAM_REGION;
+
+define region VECTOR   = mem:[from 0x00000 to 0x0007F];
+define region CALLT    = mem:[from 0x00080 to 0x000BF];
+
+define region EEPROM   = mem:[from 0xF1000 size _DATAFLASH_SZ];
+
+define block NEAR_HEAP  with alignment = 2, size = _NEAR_HEAP_SIZE {  };
+define block FAR_HEAP   with alignment = 2, size = _FAR_HEAP_SIZE {  };
+define block HUGE_HEAP  with alignment = 2, size = _HUGE_HEAP_SIZE {  };
+define block CSTACK     with alignment = 2, size = _STACK_SIZE { rw section CSTACK };
+
+define block INIT_ARRAY with alignment = 2, fixed order { ro section .preinit_array,
+                                                          ro section .init_array };
+
+define block OPT_BYTE with size = 4  { R_OPT_BYTE,
+                                       ro section .option_byte,
+                                       ro section OPTBYTE };
+define block SECUR_ID with size = 10 { R_SECUR_ID,
+                                       ro section .security_id,
+                                       ro section SECUID };
+
+if (isdefinedsymbol(__link_file_version_2))
+{
+  // Link file version 2 placement scheme is used in IAR Embedded Workbench for RL78 v3.x and later
+  place at address mem:0x00000       { ro section .reset };
+  place at address mem:0x00004       { ro section .intvec };
+}
+else
+{
+  // Link file version 1 placement scheme is used in IAR Embedded Workbench for RL78 v2.x
+  place at address mem:0x00000       { ro section .intvec };
+}
+
+place at address mem:0x000C0       { block OPT_BYTE };
+place at address mem:0x000C4       { block SECUR_ID };
+
+if (_NEAR_CONST_LOCATION_SIZE > 0)
+{
+    define block MIRROR_ROM with alignment = 2, maximum size = _NEAR_CONST_LOCATION_SIZE { ro R_CONST_init,
+                                                                                           ro section .const_init,
+                                                                                           ro section .switch_init };
+    define block MIRROR_RAM with alignment = 2, maximum size = _NEAR_CONST_LOCATION_SIZE { rw R_CONST,
+                                                                                           rw section .const,
+                                                                                           rw section .switch };
+
+    define region MIRRORABLE_ROM_REGION = mem:[from _NEAR_CONST_LOCATION_START size _NEAR_CONST_LOCATION_SIZE] - EXCLUDE_ROM_REGION;
+    "MIRRORABLE_ROM":place at end of MIRRORABLE_ROM_REGION { block MIRROR_ROM };
+
+    define region MIRRORED_RAM_REGION = mem:[from (_NEAR_CONST_LOCATION_START | 0xF0000) size _NEAR_CONST_LOCATION_SIZE] - EXCLUDE_OCD_MIRROR;
+    "MIRRORED_RAM":place at end of MIRRORED_RAM_REGION  { block MIRROR_RAM };
+}
+
+
+"CALLT":place in CALLT                { R_CALLT0,
+                                        ro section .callt0 };
+
+"ROMNEAR":place at start of ROM_near  { R_TEXT,
+					ro section .text };
+
+"ROMFAR":place in ROM_far             { block INIT_ARRAY,
+                                        R_TEXTF_UNIT64KP,
+                                        ro section .textf_unit64kp,
+                                        ro section FDL_CODE,
+                                        ro section FDL_CNST,
+                                        ro section EEL_CODE,
+                                        ro section EEL_CNST,
+                                        ro section PFDL_COD,
+                                        ro section FAL_CODE,
+                                        ro section FAL_CNST,
+                                        ro section EEL_CNST,
+                                        ro section FSL_FCD,
+                                        ro section FSL_FECD,
+                                        ro section FSL_RCD,
+                                        ro section FSL_BCD,
+                                        ro section FSL_BECD,
+                                        ro section .constf,
+                                        ro section .switchf,
+                                        ro };
+
+"ROMHUGE":place in ROM_huge           { ro section .consth,
+                                        R_TEXTF,
+                                        ro section .textf };
+
+"RAMNEAR":place in RAM_near           { block NEAR_HEAP,
+                                        block CSTACK,
+                                        zi section .iar.dynexit,
+                                        R_DATA,
+                                        rw section .data,
+                                        R_BSS,
+                                        rw section .bss*,
+                                        rw section EEL_UDAT,
+                                        rw };
+
+"RAMFAR":place in RAM_far             { block FAR_HEAP,
+                                        R_DATAF,
+                                        rw section .dataf,
+                                        rw section .data_unit64kp,
+                                        rw section .bss_unit64kp,
+                                        R_BSSF,
+                                        rw section .bssf* };
+
+"RAMHUGE":place in RAM_huge           { block HUGE_HEAP,
+                                        rw section .hdata,
+                                        rw section .hbss* };
+
+"SADDRMEM":place in SADDR             { rw section .sdata,
+                                        R_SDATA,
+                                        rw section .sbss*,
+                                        R_SBSS,
+                                        rw section FAL_DATA,
+                                        rw section FDL_SDAT,
+                                        rw section EEL_SDAT,
+                                        rw section .wrkseg };
+
+
+/* These sections can be used for build-time data placement at Data Flash's existing blocks */
+if (_DATAFLASH_SZ == 2k)
+{
+    define region DATAFLASH_BLK_0 = mem:[from 0xF1000 size 0x400];
+    define region DATAFLASH_BLK_1 = mem:[from 0xF1400 size 0x400];
+
+    "DATAFLASH_BLK_0":place at start of DATAFLASH_BLK_0  { rw section DATAFLASH_BLK0 };
+    "DATAFLASH_BLK_1":place at start of DATAFLASH_BLK_1  { rw section DATAFLASH_BLK1 };
+}
+if (_DATAFLASH_SZ == 4k)
+{
+    define region DATAFLASH_BLK_0 = mem:[from 0xF1000 size 0x400];
+    define region DATAFLASH_BLK_1 = mem:[from 0xF1400 size 0x400];
+    define region DATAFLASH_BLK_2 = mem:[from 0xF1800 size 0x400];
+    define region DATAFLASH_BLK_3 = mem:[from 0xF1C00 size 0x400];
+
+    "DATAFLASH_BLK_0":place in DATAFLASH_BLK_0  { rw section DATAFLASH_BLK0 };
+    "DATAFLASH_BLK_1":place in DATAFLASH_BLK_1  { rw section DATAFLASH_BLK1 };
+    "DATAFLASH_BLK_2":place in DATAFLASH_BLK_2  { rw section DATAFLASH_BLK2 };
+    "DATAFLASH_BLK_3":place in DATAFLASH_BLK_3  { rw section DATAFLASH_BLK3 };
+}
+if (_DATAFLASH_SZ == 8k)
+{
+    define region DATAFLASH_BLK_0 = mem:[from 0xF1000 size 0x400];
+    define region DATAFLASH_BLK_1 = mem:[from 0xF1400 size 0x400];
+    define region DATAFLASH_BLK_2 = mem:[from 0xF1800 size 0x400];
+    define region DATAFLASH_BLK_3 = mem:[from 0xF1C00 size 0x400];
+    define region DATAFLASH_BLK_4 = mem:[from 0xF2000 size 0x400];
+    define region DATAFLASH_BLK_5 = mem:[from 0xF2400 size 0x400];
+    define region DATAFLASH_BLK_6 = mem:[from 0xF2800 size 0x400];
+    define region DATAFLASH_BLK_7 = mem:[from 0xF2C00 size 0x400];
+
+    "DATAFLASH_BLK_0":place at start of DATAFLASH_BLK_0  { rw section DATAFLASH_BLK0 };
+    "DATAFLASH_BLK_1":place at start of DATAFLASH_BLK_1  { rw section DATAFLASH_BLK1 };
+    "DATAFLASH_BLK_2":place at start of DATAFLASH_BLK_2  { rw section DATAFLASH_BLK2 };
+    "DATAFLASH_BLK_3":place at start of DATAFLASH_BLK_3  { rw section DATAFLASH_BLK3 };
+    "DATAFLASH_BLK_4":place at start of DATAFLASH_BLK_4  { rw section DATAFLASH_BLK4 };
+    "DATAFLASH_BLK_5":place at start of DATAFLASH_BLK_5  { rw section DATAFLASH_BLK5 };
+    "DATAFLASH_BLK_6":place at start of DATAFLASH_BLK_6  { rw section DATAFLASH_BLK6 };
+    "DATAFLASH_BLK_7":place at start of DATAFLASH_BLK_7  { rw section DATAFLASH_BLK7 };
+}
