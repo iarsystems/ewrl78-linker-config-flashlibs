@@ -219,3 +219,10 @@ else
   place at address mem:0x00000       { ro section .intvec };
 }
 ```
+
+---
+If you have questions regarding this repository contents, you can start by checking its [issue tracker][repo-old-issue-url] for the previously asked questions.
+If it is a new question, feel free to post it [here][repo-new-issue-url].
+
+[repo-new-issue-url]: https://github.com/IARSystems/ewrl78-linker-config-flashlibs/issues/new
+[repo-old-issue-url]: https://github.com/IARSystems/ewrl78-linker-config-flashlibs/issues?q=is%3Aissue+is%3Aopen%7Cclosed
