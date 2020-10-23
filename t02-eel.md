@@ -12,9 +12,8 @@ __RESERVE_T02_EEL=1
 
 **14.** Install the [RL78 T02-EEL Library](https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78) you've previously downloaded from its distribution site. Install it for the __IAR Compiler v2.10__ (or later) on the project folder (__$PROJ_DIR$__). The installer will create folders within the __$PROJ_DIR$__ named __EEL\IAR_210__ (or similar). Adjust it accordingly if necessary, as this installer may create a slighty different folder names depending on the version available.  
 
-| __Remark__ |
-| ---------- |
-| *Before downloading the library using the link above, [__Sign in__](https://www2.renesas.eu/products/micro/download/index.html/auth/login) to the European Downloads "MyPages" site ([here](https://www2.renesas.eu/products/micro/download/index.html)) if necessary. The credentials for __"MyPages"__ may differ from the __"MyRenesas"__ credentials.* |
+> __Note__ 
+> * Before downloading the library using the link above, [__Sign in__](https://www2.renesas.eu/products/micro/download/index.html/auth/login) to the European Downloads "MyPages" site ([here](https://www2.renesas.eu/products/micro/download/index.html)) if necessary. The credentials for __"MyPages"__ may differ from the __"MyRenesas"__ credentials.
 
 ---
 
@@ -268,21 +267,18 @@ define symbol _T02_EEL_NUM_VARS = 4;   // [1~64  variables]
 
 **26.** Activate the `Watch Window` by selecting `View` → `Watch` → `Watch1`. This window will allow you to add expressions to watch the contents of the global variables used to hold different record types used to test the __EEL Pool__. `<Click to add>` __rd_recordXX__ (where __XX__ can be 01, 04, 16 or 64) and also __wr_recordXX__(where __XX__ can be 01, 04, 16 or 64).
 
-**27.**  Hit `Go` on the Debug toolbar (or press `F5`) and verify if the variables contents match.
+**27.**  Hit `Go` on the Debug toolbar (or press <kbd>F5</kbd>) and verify if the variables contents match.
 
-| __Remark__ |
-| ---------- |
-| *When performing the contents matching step, remember that the __EEL_REC64_ID__ variable had its contents updated after its contents updated of __wr_record64__ to the contents of the __w2_record64__ before it has been read with the __EEL_CMD_READ__ to be read back into the __rd_record64__ variable.* |
+> __Note__
+> * When performing the contents matching step, remember that the __EEL_REC64_ID__ variable had its contents updated after its contents updated of __wr_record64__ to the contents of the __w2_record64__ before it has been read with the __EEL_CMD_READ__ to be read back into the __rd_record64__ variable.
 
 **26.** The same verification should be performed between __wr_configdata__ and __rd_configdata__ available from the __FDL Pool__.
 
-| __Remark__ |
-| ---------- |
-| *The config data written into the __FDL Pool__ can also be directly seen at the __Data Flash__. Activate the __Memory Window__ by selecting `View` → `Memory` → `Memory1` and `Go to` the address __0xF1C00__, which is the offset __0x0000__ of the __FDL Pool__.* |
-
-![T02-FDL Memory View](/images/t02_fdl_memory1.png)
+> __Note__ 
+> * The config data written into the __FDL Pool__ can also be directly seen at the __Data Flash__. Activate the __Memory Window__ by selecting `View` → `Memory` → `Memory1` and `Go to` the address __0xF1C00__, which is the offset __0x0000__ of the __FDL Pool__.
+>
+> ![T02-FDL Memory View](/images/t02_fdl_memory1.png)
 
 ---
 
 [Back to the main ICF Trio Documentation Page](README.md#coding-examples)
-
