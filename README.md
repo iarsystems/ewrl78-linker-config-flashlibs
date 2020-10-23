@@ -29,9 +29,9 @@ The __ICF Trio__ also offers one semi-automated way to reconfigure any project a
 
 ## Benefits 
 * Provides simplified setup for new projects relying on any of the __RL78 Flash Libraries__.
-* Reduces the developer efforts when linker reconfiguration is needed, specially when facing device migration in regards to the __RL78 Flash Libraries__.
-* Offers contiguous __Code Flash__ which leads to improved flexibility when compiled objects placement is performed at the linking stage. This is achieved by taking advantage of the linker capability of placing all the **__near** constants from the __ending__ of the mirrorable area in the __Code Flash__ whereas the default linker configuration would start filling the **__near** constants section from the beginning of the __Mirrorable Area__ (normally starting from the address _**0x2000**_ or _**0x3000**_ depending on the device in use).
-* Reduces the __Code Flash__ fragmentation effect which may be noticeable on target devices with smaller flash memory installed, also thanks to its better strategy for object placement.
+* Reduces the developer efforts when linker reconfiguration is needed, specially when facing target migration in regards to the __RL78 Flash Libraries__.
+* Offers contiguous __Code Flash__ which leads to improved flexibility when compiled objects placement is performed at the linking stage. This is achieved by taking advantage of the linker capability of placing all the **__near** constants from the __ending__ of the mirrorable area in the __Code Flash__ whereas the default linker configuration would start filling the **__near** constants section from the beginning of the __Mirrorable Area__ (normally starting from the address _**0x2000**_ or _**0x3000**_ depending on the target in use).
+* Reduces the __Code Flash__ fragmentation effect which may be noticeable on targets with smaller flash memory installed, also thanks to its better strategy for object placement.
 
 ## Linker Configuration Trio Layout Specification
 
@@ -42,7 +42,7 @@ In this section you can understand how the __ICF Trio__ components fit together.
 | __File__                     | __Description__ |
 | :--------------------------- | --------------- |
 | __[trio_lnkR5F1`nn`X`n`.icf](trio_lnkR5F1---TEMPLATE.icf)__ | The first one is __user-selectable__. The selection is made based on the similarity in the memory map for distinct groups of RL78 targets. Each of these files hold the proper `Linker Configuration Override` parameters which can be set on the `Project options`.<br><br>The `X` within the part number means that the linker configuration is offered regardless the target's pin count. For example, __trio_lnkR5F100xE.icf__ should be selected for a __R5F100LE__ target. |
-| [common.icf](common.icf)     | The second is automatically included from the user-selected configuration. This is the heart of the Trio, containing parametrized directives which can be applied to any of the supported RL78 devices. |
+| [common.icf](common.icf)     | The second is automatically included from the user-selected configuration. This is the heart of the Trio, containing parametrized directives which can be applied to any of the supported RL78 targets. |
 | [self_ram.icf](self_ram.icf) | The third is automatically included by __common.icf__ to evaluate the same [symbol styles](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram) used in the __IAR Embedded Workbench for RL78__ to handle every __Self-RAM__ reservation needs for the Trio. |
 
 
