@@ -38,11 +38,11 @@ The __ICF Trio__ also offers one semi-automated way to reconfigure any project a
 
 ![ICF Trio layout](/images/icf_trio_layout.png)
 
-| __File__                   | __Description__ |
-| :------------------------- | --------------- |
-| [Common.ICF](common.icf) | The first file is used *internally* by the ICF Trio. It is the heart of the Trio, containing parametrized directives which could, in thesis, be applied on any supported RL78. |
-| [Self_RAM.ICF](self_ram.icf) | The second one is also used *internally* by the ICF Trio. It handles every Self-RAM reservation needs based on the same [symbol styles](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram) used in the `IAR Embedded Workbench for RL78`. |
-| __[trio_lnkR5F1`nn`X`n`.ICF](trio_lnkR5F1---TEMPLATE.icf)__ | The third one is user-selectable. The selection is made based on the similarity in the memory map for distinct groups of RL78 parts. Each of these files hold the proper `Linker Configuration Override` parameters which can be set on the `Project options`. Notice that the `X` in the file name means that the number of pins can be ignored for the purposes of the trio. |
+| __File__                     | __Description__ |
+| :--------------------------- | --------------- |
+| [common.icf](common.icf)     | The first file is used *internally* by the ICF Trio. It is the heart of the Trio, containing parametrized directives which could, in thesis, be applied on any supported RL78. |
+| [self_ram.icf](self_ram.icf) | The second one is also used *internally* by the ICF Trio. It handles every Self-RAM reservation needs based on the same [symbol styles](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram) used in the `IAR Embedded Workbench for RL78`. |
+| __[trio_lnkR5F1`nn`X`n`.icf](trio_lnkR5F1---TEMPLATE.icf)__ | The third one is user-selectable. The selection is made based on the similarity in the memory map for distinct groups of RL78 parts. Each of these files hold the proper `Linker Configuration Override` parameters which can be set on the `Project options`. Notice that the `X` in the file name means that the number of pins can be ignored for the purposes of the trio. |
 
 
 ## Flash Library Flavors
