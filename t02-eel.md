@@ -1,4 +1,4 @@
-### Project Setup Example for T02-EEL (tiny EEL) 
+## Project Setup Example for T02-EEL (tiny EEL) 
 
 You can refer to the previous setup steps [here](README.md#usage-guidelines).
 
@@ -15,8 +15,6 @@ __RESERVE_T02_EEL=1
 > __Note__ 
 > * Before downloading the library using the link above, [__Sign in__](https://www2.renesas.eu/products/micro/download/index.html/auth/login) to the European Downloads "MyPages" site ([here](https://www2.renesas.eu/products/micro/download/index.html)) if necessary. The credentials for __"MyPages"__ may differ from the __"MyRenesas"__ credentials.
 
----
-
 **15.** In `Linker` → `Library` → `Additional libraries`, add the following lines:
 ```
 $PROJ_DIR$\EEL\IAR_210\FDL\lib\fdl.a
@@ -29,9 +27,8 @@ $PROJ_DIR$\EEL\IAR_210\FDL\lib
 $PROJ_DIR$\EEL\IAR_210\EEL\lib
 ```
 
----
 
-### Putting the Library to some use
+## Putting the Library to some use
 
 **17.** Open the __Renesas_AP\cg_src\r_main.c__ and insert the __tiny FDL__ and __tiny EEL__ headers between the two __Applilet3__'s comment guards, as below:
 ```c
@@ -251,9 +248,7 @@ define symbol _T01_EEL_NUM_VARS = 256; // [1~256 variables]
 define symbol _T02_EEL_NUM_VARS = 4;   // [1~64  variables] 
 ```
 
----
-
-### Now to the project's hardware setup and debugging
+## Now to the project's hardware setup and debugging
 
 **21.** Go to project options, `General Options` → `Target` → `Device` and choose the desired part number. In this case the __R5F104LE__ will be selected.
 
