@@ -18,7 +18,7 @@
 
 ## What is the purpose of the ICF Trio Project?
 
-The __ICF Trio__ project was developed for __IAR Embedded Workbench for RL78__ version __3.10 or later__.
+The __ICF Trio__ project was developed for __IAR Embedded Workbench for Renesas RL78__ version __3.10 or later__.
 
 The __ICF Trio__ provides an improved linker configuration by using a group of 3 files which will work together towards an optimal setup.
 
