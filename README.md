@@ -36,13 +36,15 @@ The __ICF Trio__ also offers one semi-automated way to reconfigure any project a
 
 ## Linker Configuration Trio Layout Specification
 
+In this section you can understand how the __ICF Trio__ components fits together.
+
 ![ICF Trio layout](/images/icf_trio_layout.png)
 
 | __File__                     | __Description__ |
 | :--------------------------- | --------------- |
-| __[trio_lnkR5F1`nn`X`n`.icf](trio_lnkR5F1---TEMPLATE.icf)__ | The first one is __user-selectable__. The selection is made based on the similarity in the memory map for distinct groups of RL78 targets. Each of these files hold the proper `Linker Configuration Override` parameters which can be set on the `Project options`.<br><br>The `X` iwithin the part number means that the linker configuration is offered regardless the target's pin count. For example, __trio_lnkR5F100xE.icf__ should be selected for a __R5F100LE__ target. |
+| __[trio_lnkR5F1`nn`X`n`.icf](trio_lnkR5F1---TEMPLATE.icf)__ | The first one is __user-selectable__. The selection is made based on the similarity in the memory map for distinct groups of RL78 targets. Each of these files hold the proper `Linker Configuration Override` parameters which can be set on the `Project options`.<br><br>The `X` within the part number means that the linker configuration is offered regardless the target's pin count. For example, __trio_lnkR5F100xE.icf__ should be selected for a __R5F100LE__ target. |
 | [common.icf](common.icf)     | The second is automatically included from the user-selected configuration. This is the heart of the Trio, containing parametrized directives which can be applied to any of the supported RL78 devices. |
-| [self_ram.icf](self_ram.icf) | The third is used by __common.icf__ to evaluate the same [symbol styles](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram) used in the __IAR Embedded Workbench for RL78__ to handle every __Self-RAM__ reservation needs for the Trio. |
+| [self_ram.icf](self_ram.icf) | The third is automatically included by __common.icf__ to evaluate the same [symbol styles](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram) used in the __IAR Embedded Workbench for RL78__ to handle every __Self-RAM__ reservation needs for the Trio. |
 
 
 ## Flash Library Flavors
