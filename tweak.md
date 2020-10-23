@@ -1,6 +1,10 @@
-## ICF Trio on IAR Embedded Workbench for Renesas RL78 v2.x
+## Tweaking the ICF Trio for IAR Embedded Workbench for Renesas RL78 v2.x
 
-The __ICF Trio__ comes ready to use with the __IAR Embedded Workbench for Renesas RL78 v3.x__ or later as it, by default. It uses the ICF __v2__ scheme. Nevertheless the __ICF Trio__ still can be used with the IAR Embedded Workbench for Renesas RL78 __v2.x__, which relies on an earlier format for the linker configuration, the ICF __v1__ scheme. In order to do so, a minor manual switch has to be toggled, simply by commenting the exported symbol `__link_file_version_2` in the [common.icf](common.icf) file, as  below:
+The __ICF Trio__ comes ready to use with the __IAR Embedded Workbench for Renesas RL78 v3.x__ or later. It uses the linker configuration scheme __v2__ format. 
+
+Nevertheless, it is possible to use the __ICF Trio__ with the __IAR Embedded Workbench for Renesas RL78 v2.x__, which relies on the earlier linker configuration scheme, the __v1__ format.
+
+To enable the tweak, comment the [`define exported symbol __link_file_version_2 = 1;`](common.icf#L12) in the [common.icf](common.icf#L12) file, as  below:
 
 ```c
 // Required symbol for the newer ICF format in IAR Embedded Workbench for RL78 v3.x and later to work
