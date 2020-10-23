@@ -90,7 +90,9 @@ The following software components were successfuly usable alongside the __ICF Tr
 - [IAR Embedded Workbench for RL78 version 4.20](https://www.iar.com/iar-embedded-workbench/#!?architecture=RL78) 
 - [Git for Windows](https://git-scm.com/download/win) 
 - [Applilet3 for RL78](https://www.renesas.com/software/D4000916.html) 
-- A __RL78 Flash Library__ of your choice - The download requires pre-registration ([here](https://www2.renesas.eu/products/micro/download/index.html/auth/register)) or sign-in ([here](https://www2.renesas.eu/products/micro/download/index.html/auth/login)) specific to the Renesas Europe "MyPages" site.
+- A __RL78 Flash Library__ of your choice, downloadable from the Renesas Electronics Europe "MyPages": 
+   - The download requires [pre-registration](https://www2.renesas.eu/products/micro/download/index.html/auth/register)
+   - or [sign-in](https://www2.renesas.eu/products/micro/download/index.html/auth/login) for registered users
 
 ### RL78 Flash Libraries, documentation and their respective required linker symbols for Self-RAM
 
