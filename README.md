@@ -25,7 +25,7 @@ The __ICF Trio__ provides an improved linker configuration by using a group of 3
 The __ICF Trio__ also offers one semi-automated way to reconfigure any project according to the memory reservation requirements when there are __RL78 Flash Libraries__ in use.
 
 > __Note__
-> * There is a [tweak](tweak.md) that enables the __ICF Trio__ to work with the IAR Embedded Workbench for Renesas RL78 version 2.x.
+> * Although it is recommended to stay with the latest version of the IDE, there is a simple [tweak](tweak.md) for the EWRL78 v2.x users.
 
 ## Benefits 
 * Provides simplified setup for new projects relying on any of the __RL78 Flash Libraries__.
