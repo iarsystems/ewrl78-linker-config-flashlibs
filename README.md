@@ -161,21 +161,15 @@ The following software components were successfuly usable alongside the __ICF Tr
 **11.** Invoke the context menu (right-click) on the __.ipcf__ file and choose `Open Containing Folder`. Invoke the context menu for the folder in the __Windows Explorer__ and choose `Git Bash Here`. This step will open a Git Bash Shell at `Place` (__$PROJ_DIR$__). From there perform:
 
  ```bash
- git clone https://github.com/IARSystems/ewrl78-linker-config-flashlibs.git
- ```
- 
- ~~~
- devel@per-machine MING64 /c/FDL_Project
  $ git clone https://github.com/IARSystems/ewrl78-linker-config-flashlibs.git
- Cloning into 'ewrl78-linker-config-flashlibs'...
- remote: Counting objects: 58, done.
- remote: Compressing objects: 100% (33/33), done.
- remote: Total 58 (delta 36), reused 34 (delta 30), pack-reused 0
- Unpacking objects: 100% (58/58), done.
- 
- devel@per-machine MING64 /c/FDL_Project
- $
- ~~~
+ ```
+ >~~~
+ > Cloning into 'ewrl78-linker-config-flashlibs'...
+ > remote: Counting objects: 58, done.
+ > remote: Compressing objects: 100% (33/33), done.
+ > remote: Total 58 (delta 36), reused 34 (delta 30), pack-reused 0
+ > Unpacking objects: 100% (58/58), done.
+ >~~~
  
 **12.** Back to the __IAR Embedded Workbench for RL78__, go to the Project Options, `Linker` → `Config` → `Override default` and choose the right part number. For this example, __R5F104LEA__ will be used, hence the [trio_lnkR5F104xE.icf](trio_lnkR5F104xE.icf) should (and will) be selected:
 ```
