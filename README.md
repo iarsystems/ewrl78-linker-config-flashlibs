@@ -24,8 +24,9 @@ The __ICF Trio__ provides an improved linker configuration by using a group of 3
 
 The __ICF Trio__ also offers one semi-automated way to reconfigure any project according to the memory reservation requirements when there are __RL78 Flash Libraries__ in use.
 
-> __Note__
-> * Although it is recommended to stay with the latest version of the IDE, there is a simple [tweak](tweak.md) for the EWRL78 v2.x users.
+> __Notes__
+> * Although it is highly recommended to stay with the latest release of the IDE when starting new projects to take advantage of bug fixes and improved experience, we kept a reference for a simple [tweak](tweak.md) for our long standing EWRL78 v2.x users.
+> * The __ICF Trio__ cannot be used with the EWRL78 v1.x series.
 
 ## Benefits 
 * Provides simplified setup for new projects relying on any of the __RL78 Flash Libraries__.
