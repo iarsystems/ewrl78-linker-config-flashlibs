@@ -36,7 +36,7 @@ The __ICF Trio__ also offers one semi-automated way to reconfigure any project a
 
 ## Linker Configuration Trio Layout Specification
 
-In this section you can understand how the __ICF Trio__ components fits together.
+In this section you can understand how the __ICF Trio__ components fit together.
 
 ![ICF Trio layout](/images/icf_trio_layout.png)
 
