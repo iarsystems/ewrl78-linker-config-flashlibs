@@ -1,4 +1,4 @@
-### Project Setup Example for T04-FDL (pico FDL) 
+## Project Setup Example for T04-FDL (pico FDL) 
 
 You can refer to the previous setup steps [here](README.md#usage-guidelines).
 
@@ -11,11 +11,8 @@ __RESERVE_T04_FDL=1
 
 **14.** Install the [RL78 T04-FDL Library](https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78) you've previously downloaded from its distribution site. Install it for the __IAR Compiler v2.10__ (or later) on the project folder (__$PROJ_DIR$__). The installer will create a folders within the __$PROJ_DIR$__ named __FDL\IAR_210__ (or similar). Adjust it accordingly if necessary, as this installer may create a slighty different folder name depending on the version available.  
 
-| __Remark__ |
-| ---------- |
-| *Before downloading the library using the link above, [__Sign in__](https://www2.renesas.eu/products/micro/download/index.html/auth/login) to the European Downloads "MyPages" site ([here](https://www2.renesas.eu/products/micro/download/index.html)) if necessary. The credentials for __"MyPages"__ may differ from the __"MyRenesas"__ credentials.* |
-
----
+> __Note__
+> * Before downloading the library using the link above, [__Sign in__](https://www2.renesas.eu/products/micro/download/index.html/auth/login) to the European Downloads "MyPages" site ([here](https://www2.renesas.eu/products/micro/download/index.html)) if necessary. The credentials for __"MyPages"__ may differ from the __"MyRenesas"__ credentials.
 
 **15.** In `Linker` → `Library` → `Additional libraries`, add the following line:
 ```
@@ -27,7 +24,7 @@ $PROJ_DIR$\applilet3_src
 $PROJ_DIR$\FDL\IAR_210\lib
 ```
 
-### Putting the Library to some use
+## Putting the Library to some use
 
 **17.** Open the __Renesas_AP\cg_src\r_main.c__ and insert the __pico FDL__ headers between the two __Applilet3__'s comment guards, as below:
 ```c
@@ -145,7 +142,7 @@ void main(void)
 
 ```
 
-### Now to the project's hardware setup and debugging
+## Now to the project's hardware setup and debugging
 
 **20.** Go to the Project Options, `General Options` → `Target` → `Device` and choose the desired part number. In this case the __R5F104LE__ will be selected.
 
@@ -159,12 +156,12 @@ void main(void)
 
 **25.** Activate the __Watch Window__ by selecting `View` → `Watch` → `Watch1`. This window will allow you to add expressions to watch the contents of global variables. `<Click to add>` __ReadString__ and __WriteString__.
 
-**26.**  Hit `Go` on the Debug toolbar (or press `F5`) and verify if the variables contents match.
+**26.**  Hit `Go` on the Debug toolbar (or press <kbd>F5</kbd>) and verify if the variables contents match.
 
-| __Remark__ |
-| ---------- |
-| *The data written into the __Data Flash__ can also be directly seen by activating the __Memory Window__. In this case, select `View` → `Memory` → `Memory1` and `Go to` the address __0xF1000__. This will take the __Memory Window__ straight to the __Data Flash__ initial address.* |
-|![T04-FDL Memory View](images/t04_fdl_memory1.png)   |
+> __Note__
+> * The data written into the __Data Flash__ can also be directly seen by activating the __Memory Window__. In this case, select `View` → `Memory` → `Memory1` and `Go to` the address __0xF1000__. This will take the __Memory Window__ straight to the __Data Flash__ initial address.
+>
+> ![T04-FDL Memory View](images/t04_fdl_memory1.png)
 
 ---
 
