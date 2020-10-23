@@ -25,18 +25,14 @@ The project's purpose is to provide a group of 3 files which composes the _Trio_
 
 The __ICF Trio__ also offers one semi-automated way to reconfigure any project according to the memory reservation requirements when there are __RL78 Flash Libraries__ in use.
 
-| __Remark__ |
-| ---------- |
-| *The __ICF Trio__ requires at least  __IAR Embedded Workbench for RL78__ version 2.10 or newer, defaulting to version 3.10 or later. There are some [instructions](README.md#icf-trio-on-iar-embedded-workbench-for-rl78-v2x) on how to proceed when using it with version 2.10.* |
-
----
+> __Note__
+> * The __ICF Trio__ requires at least  __IAR Embedded Workbench for RL78__ version 2.10 or newer, defaulting to version 3.10 or later. There are some [instructions](README.md#icf-trio-on-iar-embedded-workbench-for-rl78-v2x) on how to proceed when using it with version 2.10.
 
 ## Benefits 
 * Provides simplified setup for new projects relying on any of the __RL78 Flash Libraries__.
 * Reduces the developer efforts when linker reconfiguration is needed, specially when facing device migration in regards to the __RL78 Flash Libraries__.
 * Offers contiguous __Code Flash__ which leads to improved flexibility when compiled objects placement is performed at the linking stage. This is achieved by taking advantage of the linker capability of placing all the **__near** constants from the __ending__ of the mirrorable area in the __Code Flash__ whereas the default linker configuration would start filling the **__near** constants section from the beginning of the __Mirrorable Area__ (normally starting from the address _**0x2000**_ or _**0x3000**_ depending on the device in use).
 * Reduces the __Code Flash__ fragmentation effect which may be noticeable on target devices with smaller flash memory installed, also thanks to its better strategy for object placement.
-
 
 ## Linker Configuration Trio Layout Specification
 
@@ -66,11 +62,8 @@ The __RL78 Flash Libraries__ flavors may be provided on 3 different library type
 - The **T02** (Type02, also known as **Tiny**) are the balanced ones, providing the main functionalities at expense of less resources when compared with the T01 Libraries.
 - The **T04** (Type04, also known as **Pico**) is the one providing only the essential functionalities. This library type offers the lowest resource usage footprint. Usually this is the typical choice for the scenarios where the chosen RL78 MCU part does not come with plenty of memory.
 
-| __Remark__ |
-| ---------- |
-| *For further information regarding the complete feature set provided in each of these flash libraries, refer to their respective [documentation](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram).* |
-
----
+> __Note__
+> * For further information regarding the complete feature set provided in each of these flash libraries, refer to their respective [documentation](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram).
 
 
 ## Self-RAM 
@@ -81,7 +74,6 @@ Self-RAM refers to the aforementioned RAM area, which __must__ be reserved on so
 
 In order to tremendously simplify this process, the __ICF Trio__ mostly automates it, by taking advantage of every advanced linker configuration directive available to override the default linker configuration, while following the requirements defined in the aforementioned Application Note. 
 
----
 
 ## How to use the ICF Trio
 
@@ -101,14 +93,24 @@ The following software components were successfuly usable alongside the __ICF Tr
 
 ### RL78 Flash Libraries, documentation and their respective required linker symbols for Self-RAM
 
-|  __RL78 Flash Library__                                                               | __Documentation__                                                                                      | __Symbol__   | __Description__                                                     |
-| :------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: | :-------------------: | :----------------------------------------------------------------- |
-| [T01-FSL Download](https://www2.renesas.eu/products/micro/download/?oc=SelfLib_RL78)          | [T01-FSL Documentation](https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0016ED0105_RL78.pdf) | `__RESERVE_T01_FSL=1` | Reserves Self-RAM for use with Code Flash Library __T01-FSL__       |
-| [T01-FDL Download](https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78) | [T01-FDL Documentation](https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0034ED0101.pdf)      | `__RESERVE_T01_FDL=1` | Reserves Self-RAM for use with Data Flash Library __T01-FDL__       |
-| [T01-EEL Download](https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78) | [T01-EEL Documentation](https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0128ED0101_RL78.pdf) | `__RESERVE_T01_EEL=1` | Reserves Self-RAM for use with EEPROM Emulation Library __T01-EEL__ |
-| [T02-FDL Download](https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78) | [T02-FDL Documentation](https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0061ED0120_RL78.pdf) | `__RESERVE_T02_FDL=1` | Reserves Self-RAM for use with Tiny Data Flash Library __T02-FDL__  |
-| [T02-EEL Download](https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78) | [T02-EEL Documentation](https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0070ED0105_RL78.pdf) | `__RESERVE_T02_EEL=1` | Reserves Self-RAM for use with EEPROM Emulation Library __T02-EEL__ |
-| [T04-FDL Download](https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78) | [T04-FDL Documentation](https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0055ED0112.pdf)      | `__RESERVE_T04_FDL=1` | Reserves Self-RAM for use with Pico Flash Lbrary __T04-FDL__        |
+|  __RL78 Flash Library__         | __Documentation__                        | __Symbol__            | __Description__                                                     |
+| :-----------------------------: | :--------------------------------------: | :-------------------: | :------------------------------------------------------------------ |
+| [T01-FSL Download][t01-fsl-url] | [T01-FSL Documentation][t01-fsl-doc-url] | `__RESERVE_T01_FSL=1` | Reserves Self-RAM for use with Code Flash Library __T01-FSL__       |
+| [T01-FDL Download][t0x-xxl-url] | [T01-FDL Documentation][t01-fdl-doc-url] | `__RESERVE_T01_FDL=1` | Reserves Self-RAM for use with Data Flash Library __T01-FDL__       |
+| [T01-EEL Download][t0x-xxl-url] | [T01-EEL Documentation][t01-eel-doc-url] | `__RESERVE_T01_EEL=1` | Reserves Self-RAM for use with EEPROM Emulation Library __T01-EEL__ |
+| [T02-FDL Download][t0x-xxl-url] | [T02-FDL Documentation][t02-fdl-doc-url] | `__RESERVE_T02_FDL=1` | Reserves Self-RAM for use with Tiny Data Flash Library __T02-FDL__  |
+| [T02-EEL Download][t0x-xxl-url] | [T02-EEL Documentation][t02-eel-doc-url] | `__RESERVE_T02_EEL=1` | Reserves Self-RAM for use with EEPROM Emulation Library __T02-EEL__ |
+| [T04-FDL Download][t0x-xxl-url] | [T04-FDL Documentation][t04-fdl-doc-url] | `__RESERVE_T04_FDL=1` | Reserves Self-RAM for use with Pico Flash Lbrary __T04-FDL__        |
+
+[t01-fsl-url]:     https://www2.renesas.eu/products/micro/download/?oc=SelfLib_RL78
+[t0x-xxl-url]:     https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78
+[t01-fsl-doc-url]: https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0016ED0105_RL78.pdf
+[t01-fdl-doc-url]: https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0034ED0101.pdf
+[t01-eel-doc-url]: https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0128ED0101_RL78.pdf
+[t02-fdl-doc-url]: https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0061ED0120_RL78.pdf
+[t02-eel-doc-url]: https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0070ED0105_RL78.pdf
+[t04-fdl-doc-url]: https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0055ED0112.pdf
+
 
 ## Usage Guidelines 
 
@@ -116,11 +118,8 @@ The following software components were successfuly usable alongside the __ICF Tr
 
 **1.** Install the [IAR Embedded Workbench for RL78](https://www.iar.com/iar-embedded-workbench/#!?architecture=RL78).
 
-| __Remark__ |
-| ---------- |
-| *When installing the IAR Embedded Workbench for RL78, the installer also will offer the possibility to install a code generator tool named [AP4](https://www.renesas.com/products/software-tools/tools/code-generator/ap4-applilet.html). The AP4 is a GUI-based code generator that can generate peripheral drivers in C source containing driver functions for some of the RL78 parts.* |
-
----
+> __Note__
+> * When installing the IAR Embedded Workbench for RL78, the installer also will offer the possibility to install a code generator tool named [AP4](https://www.renesas.com/products/software-tools/tools/code-generator/ap4-applilet.html). The AP4 is a GUI-based code generator that can generate peripheral drivers in C source containing driver functions for some of the RL78 parts.
 
 **2.** For the purposes of this general guide, the selected part which will be used is a general purpose RL78/G14 (PN# __[R5F104LEAFA](https://www.renesas.com/products/microcontrollers-microprocessors/rl78/rl78g1x/rl78g14/device/R5F104LEAFA.html)__). The part belongs to the *RL78/G14 Series*. The G14 Series uses a previous version of the AP4, the [Applilet3 for RL78](https://www.renesas.com/software/D4000916.html) configuration tool, which should then be installed.
 
@@ -186,13 +185,11 @@ From this point you can now choose one of the examples below, which contains fur
 
 ## Coding Examples
 
-| __Example__                  | __Description__ |
-| :--------------------------- | :-------------- |
+| __Example__                       | __Description__ |
+| :-------------------------------- | :-------------- |
 | [Example for T04-FDL](t04-fdl.md) | Creates a simple program which uses the T04-FDL Library in order to store some data in the RL78 __Data Flash__ | 
 | [Example for T01-FSL](t01-fsl.md) | Creates a simple program which uses the T01-FSL Library in order to store some data in the RL78 __Code Flash__ |
 | [Example for T02-EEL](t02-eel.md) | Creates a program which uses the T02-EEL Library and its corresponding dependency, the T02-FDL library. It exercises storing and retrieving data from the __EEL pool__ as well as from the __FDL pool__, both located into the RL78 __Data Flash__ |
-
----
 
 ## ICF Trio on IAR Embedded Workbench for RL78 v2.x
 
