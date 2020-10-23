@@ -41,8 +41,8 @@ The __ICF Trio__ also offers one semi-automated way to reconfigure any project a
 | __File__                     | __Description__ |
 | :--------------------------- | --------------- |
 | [common.icf](common.icf)     | The first file is used *internally* by the ICF Trio. It is the heart of the Trio, containing parametrized directives which could, in thesis, be applied on any supported RL78. |
-| [self_ram.icf](self_ram.icf) | The second one is also used *internally* by the ICF Trio. It handles every Self-RAM reservation needs based on the same [symbol styles](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram) used in the `IAR Embedded Workbench for RL78`. |
-| __[trio_lnkR5F1`nn`X`n`.icf](trio_lnkR5F1---TEMPLATE.icf)__ | The third one is user-selectable. The selection is made based on the similarity in the memory map for distinct groups of RL78 parts. Each of these files hold the proper `Linker Configuration Override` parameters which can be set on the `Project options`. Notice that the `X` in the file name means that the number of pins can be ignored for the purposes of the trio. |
+| [self_ram.icf](self_ram.icf) | The second one is also used *internally* by the Trio. It handles every Self-RAM reservation needs based on the same [symbol styles](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram) used in the __IAR Embedded Workbench for RL78__. |
+| __[trio_lnkR5F1`nn`X`n`.icf](trio_lnkR5F1---TEMPLATE.icf)__ | The third one is user-selectable. The selection is made based on the similarity in the memory map for distinct groups of RL78 parts. Each of these files hold the proper `Linker Configuration Override` parameters which can be set on the `Project options`. Notice that the `X` in the file name means that the number of pins can be ignored for the purposes of the Trio. |
 
 
 ## Flash Library Flavors
@@ -89,7 +89,7 @@ The following software components were successfuly usable alongside the __ICF Tr
 - [IAR Embedded Workbench for RL78 version 4.20](https://www.iar.com/iar-embedded-workbench/#!?architecture=RL78) 
 - [Git for Windows](https://git-scm.com/download/win) 
 - [Applilet3 for RL78](https://www.renesas.com/software/D4000916.html) 
-- A __RL78 Flash Library__ of your choice - The download requires pre-registration ([here](https://www2.renesas.eu/products/micro/download/index.html/auth/register)) or Sign-in ([here](https://www2.renesas.eu/products/micro/download/index.html/auth/login)) specific to the Renesas Europe "MyPages" site.
+- A __RL78 Flash Library__ of your choice - The download requires pre-registration ([here](https://www2.renesas.eu/products/micro/download/index.html/auth/register)) or sign-in ([here](https://www2.renesas.eu/products/micro/download/index.html/auth/login)) specific to the Renesas Europe "MyPages" site.
 
 ### RL78 Flash Libraries, documentation and their respective required linker symbols for Self-RAM
 
@@ -148,7 +148,7 @@ The following software components were successfuly usable alongside the __ICF Tr
 **8.** Start the __IAR Embedded Workbench for RL78__, save the the Workspace (_.eww_) on the same project folder which was created at the chosen `Place`. This folder can (and will) be referred by __IAR Embedded Workbench__ through its built-in environment variable __$PROJ_DIR$__.
 
 > __Note__
-> * The __$PROJ_DIR$__ is an argument variable which can be conveniently used refer to relative pathnames when accessing the project's resources in the storage media. With __IAR Embedded Workbench__, you can use a wide range of built-in argument variables, as well as create your own. For more information search for `Argument Variables` on the [__IAR Embedded Workbench IDE Project Management and Building Guide__][argvars-url].
+> * The __$PROJ_DIR$__ is an argument variable which can be conveniently used refer to relative pathnames when accessing the project's resources in the storage media. With __IAR Embedded Workbench__, you can use a wide range of built-in argument variables, as well as create your own. For more information search for __[Argument Variables][argvars-url]__ on the [__IAR Embedded Workbench IDE Project Management and Building Guide__][argvars-url].
 
 [argvars-url]: https://netstorage.iar.com/SuppDB/Public/UPDINFO/014217/ew/doc/EWRL78_IDEGuide.ENU.pdf#page=82
 
@@ -194,7 +194,7 @@ From this point you can now choose one of the examples below, which contains fur
 
 ## ICF Trio on IAR Embedded Workbench for RL78 v2.x
 
-The __ICF Trio__ comes ready to use with IAR __Embedded Workbench for RL78 v3__ or later as it, by default. It uses the ICF __v2__ scheme. Nevertheless the __ICF Trio__ still can be used with the IAR Embedded Workbench __v2__, which relies on an earlier format for the linker configuration, the ICF __v1__ scheme. In order to do so, a minor manual switch has to be toggled, simply by commenting the exported symbol **__link_file_version_2** in the [Common.ICF](common.icf) file, as illustrated bellow:
+The __ICF Trio__ comes ready to use with IAR __Embedded Workbench for RL78 v3__ or later as it, by default. It uses the ICF __v2__ scheme. Nevertheless the __ICF Trio__ still can be used with the IAR Embedded Workbench __v2__, which relies on an earlier format for the linker configuration, the ICF __v1__ scheme. In order to do so, a minor manual switch has to be toggled, simply by commenting the exported symbol **__link_file_version_2** in the [common.icf](common.icf) file, as illustrated bellow:
 
 ```c
 // Required symbol for the newer ICF format in IAR Embedded Workbench for RL78 v3.x and later to work
