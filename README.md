@@ -14,19 +14,18 @@
     - [Install the tools](#install-the-tools)
     - [Applilet3 base project creation](#applilet3-base-project-creation)
 - [Coding Examples](#coding-examples)
-- [ICF Trio on IAR Embedded Workbench for RL78 v2.x](#icf-trio-on-iar-embedded-workbench-for-rl78-v2x)
 
 
 ## What is the purpose of the ICF Trio Project?
 
-The __ICF Trio__ Project was designed for helping __IAR Embedded Workbench for RL78__ users to quickly setup their linker configurations.
+The __ICF Trio__ project was developed for __IAR Embedded Workbench for RL78__ version __3.10 or later__.
 
-The project's purpose is to provide a group of 3 files which composes the _Trio_ and they will work together towards an optimal linker configuration, delivering an improved method towards quicker and easier setup specifically for the __ILinker Configuration__. 
+The __ICF Trio__ provides an improved linker configuration by using a group of 3 files which will work together towards an optimal setup.
 
 The __ICF Trio__ also offers one semi-automated way to reconfigure any project according to the memory reservation requirements when there are __RL78 Flash Libraries__ in use.
 
 > __Note__
-> * The __ICF Trio__ requires at least  __IAR Embedded Workbench for RL78__ version 2.10 or newer, defaulting to version 3.10 or later. There are some [instructions](README.md#icf-trio-on-iar-embedded-workbench-for-rl78-v2x) on how to proceed when using it with version 2.10.
+> * There is a [tweak](tweak.md) that enables the __ICF Trio__ to work with the IAR Embedded Workbench for Renesas RL78 version 2.x.
 
 ## Benefits 
 * Provides simplified setup for new projects relying on any of the __RL78 Flash Libraries__.
