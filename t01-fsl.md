@@ -1,4 +1,4 @@
-### Project Setup Example for T01-FSL  
+## Project Setup Example for T01-FSL  
 
 You can refer to the previous setup steps [here](README.md#usage-guidelines).
 
@@ -15,9 +15,6 @@ __RESERVE_T01_FSL=1
 > __Note__ 
 > * Before downloading the library using the link above, [__Sign in__](https://www2.renesas.eu/products/micro/download/index.html/auth/login) to the European Downloads "MyPages" site ([here](https://www2.renesas.eu/products/micro/download/index.html)) if necessary. The credentials for __"MyPages"__ may differ from the __"MyRenesas"__ credentials.
 
----
-
-
 **15.** In `Linker` → `Library` → `Additional libraries`, add the following line:
 ```
 $PROJ_DIR$\FSL\IAR_210\lib\fsl.a
@@ -28,9 +25,7 @@ $PROJ_DIR$\applilet3_src
 $PROJ_DIR$\FSL\IAR_210\lib
 ```
 
----
-
-### Putting the Library to some use
+## Putting the Library to some use
 
 **17.** Open the __Renesas_AP\cg_src\r_main.c__ and insert the FSL headers between the two __Applilet3__'s comment guards, as below:
 ```c
@@ -127,9 +122,7 @@ void main(void)
 
 ```
 
----
-
-### Now to the project's hardware setup and debugging
+## Now to the project's hardware setup and debugging
 
 **20.** Go to project options, `General Options` → `Target` → `Device` and choose the desired part number. In this case the __R5F104LE__ will be selected.
 
@@ -155,5 +148,4 @@ void main(void)
 > ![T01-FSL Memory2 View](images/t01_fsl_memory2.png) 
 
 ---
-
 [Back to the main ICF Trio Documentation Page](README.md#coding-examples)
