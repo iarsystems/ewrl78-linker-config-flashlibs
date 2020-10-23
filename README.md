@@ -47,11 +47,11 @@ The __ICF Trio__ also offers one semi-automated way to reconfigure any project a
 
 ## Flash Library Flavors
 
-The Renesas RL78 MCUs require specific set(s) of librar(y/ies) to enable usage of its Flash Memories.
+The Renesas RL78 MCUs require specific set of library(/ies) to enable usage of its Flash Memories.
 
 Renesas Electronics provides the __RL78 Flash Libraries__ in 3 different flavors:
 - The **FSL** (Flash Self-Programming Library) does program the RL78's __Code Flash__. 
-- The **FDL** (Flash Data Library) does program the RL78's `Data Flash`.
+- The **FDL** (Flash Data Library) does program the RL78's __Data Flash__.
 - The **EEL** (EEPROM Emulation Library) does emulate EEPROM behaviour on the RL78's __Data Flash__. It provides an extra layer of functionalities on top of its corresponding companion FDL Library Type (T01 or T02 - [explained below](README.md#flash-library-types)). It provides transparent [__Wear Leveling__](https://en.wikipedia.org/wiki/Wear_leveling) among the provisioned __Data Flash__ blocks which may, in practice, virtually raise the amount of possible rewrites.
 
 
@@ -77,11 +77,11 @@ In order to tremendously simplify this process, the __ICF Trio__ mostly automate
 
 ## How to use the ICF Trio
 
-The following sections are going to serve as a straightforward step-by-step guide containing what is considered to be near the minimal actions that should be taken from scratch to configure a project to use the **ICF Trio**.
+The following sections are going to serve as a straightforward step-by-step guide containing what is considered to be near the minimal actions that should be taken from scratch to configure a project to use the __ICF Trio__.
 
 As reference, the RL78/G14 MCU (PN# __[R5F104LEAFA](https://www.renesas.com/products/microcontrollers-microprocessors/rl78/rl78g1x/rl78g14/device/R5F104LEAFA.html)__) will be used alongside the most popular __RL78 Flash Libraries__ combinations. 
 
-Based on those steps, any other RL78 part which can use these `RL78 Flash Libraries` could be then be used in a quite similar way. 
+Based on those steps, any other RL78 part which can use these __RL78 Flash Libraries__ could be then be used in a quite similar way. 
 
 ## Required Software 
 
@@ -89,7 +89,7 @@ The following software components were successfuly usable alongside the __ICF Tr
 - [IAR Embedded Workbench for RL78 version 4.20](https://www.iar.com/iar-embedded-workbench/#!?architecture=RL78) 
 - [Git for Windows](https://git-scm.com/download/win) 
 - [Applilet3 for RL78](https://www.renesas.com/software/D4000916.html) 
-- A `RL78 Flash Library` of your choice - The download requires pre-registration ([here](https://www2.renesas.eu/products/micro/download/index.html/auth/register)) or Sign-in ([here](https://www2.renesas.eu/products/micro/download/index.html/auth/login)) specific to the Renesas Europe "MyPages" site.
+- A __RL78 Flash Library__ of your choice - The download requires pre-registration ([here](https://www2.renesas.eu/products/micro/download/index.html/auth/register)) or Sign-in ([here](https://www2.renesas.eu/products/micro/download/index.html/auth/login)) specific to the Renesas Europe "MyPages" site.
 
 ### RL78 Flash Libraries, documentation and their respective required linker symbols for Self-RAM
 
@@ -147,9 +147,10 @@ The following software components were successfuly usable alongside the __ICF Tr
 
 **8.** Start the __IAR Embedded Workbench for RL78__, save the the Workspace (_.eww_) on the same project folder which was created at the chosen `Place`. This folder can (and will) be referred by __IAR Embedded Workbench__ through its built-in environment variable __$PROJ_DIR$__.
 
-| __Remark__ |
-| ---------- |
-| *The __$PROJ_DIR$__ is an argument variable which can be conveniently used refer to relative pathnames when accessing the project's resources in the storage media. With __IAR Embedded Workbench__, you can use a wide range of built-in argument variables, as well as create your own. For more information search for `Argument Variables` on the [__IAR Embedded Workbench IDE Project Management and Building Guide__](https://www.iar.com/support/user-guides/user-guides-iar-embedded-workbench-for-renesas-rl78/).* |
+> __Note__
+> * The __$PROJ_DIR$__ is an argument variable which can be conveniently used refer to relative pathnames when accessing the project's resources in the storage media. With __IAR Embedded Workbench__, you can use a wide range of built-in argument variables, as well as create your own. For more information search for `Argument Variables` on the [__IAR Embedded Workbench IDE Project Management and Building Guide__][argvars-url].
+
+[argvars-url]: https://netstorage.iar.com/SuppDB/Public/UPDINFO/014217/ew/doc/EWRL78_IDEGuide.ENU.pdf#page=82
 
 **9.** Choose `Project` → `Create New Project...` and create an empty RL78 project. Save it on the project's __$PROJ_DIR$__ location.
 
@@ -176,7 +177,7 @@ The following software components were successfuly usable alongside the __ICF Tr
  $
  ~~~
  
-**12.** Back to the ___IAR Embedded Workbench for RL78___, go to the Project Options, `Linker` → `Config` → `Override default` and choose the right part number. For this example, __R5F104LEA__ will be used, hence the [trio_lnkR5F104xE.icf](trio_lnkR5F104xE.icf) should (and will) be selected:
+**12.** Back to the __IAR Embedded Workbench for RL78__, go to the Project Options, `Linker` → `Config` → `Override default` and choose the right part number. For this example, __R5F104LEA__ will be used, hence the [trio_lnkR5F104xE.icf](trio_lnkR5F104xE.icf) should (and will) be selected:
 ```
 $PROJ_DIR$\ewrl78-linker-config-flashlibs\trio_lnkR5F104xE.icf
 ```
@@ -201,7 +202,7 @@ The __ICF Trio__ comes ready to use with IAR __Embedded Workbench for RL78 v3__ 
 // define exported symbol __link_file_version_2 = 1;
 ```
 
-By doing so, the [Common.ICF](common.icf) will then switch between two different reset modes, in accordance to the following:
+By doing so, the [common.icf](common.icf) file will then switch between two different reset modes, in accordance to the following:
 
 ```c
 if (isdefinedsymbol(__link_file_version_2))
