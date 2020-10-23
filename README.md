@@ -40,9 +40,9 @@ The __ICF Trio__ also offers one semi-automated way to reconfigure any project a
 
 | __File__                     | __Description__ |
 | :--------------------------- | --------------- |
-| [common.icf](common.icf)     | The first file is used *internally* by the ICF Trio. It is the heart of the Trio, containing parametrized directives which could, in thesis, be applied on any supported RL78. |
-| [self_ram.icf](self_ram.icf) | The second one is also used *internally* by the Trio. It handles every Self-RAM reservation needs based on the same [symbol styles](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram) used in the __IAR Embedded Workbench for RL78__. |
-| __[trio_lnkR5F1`nn`X`n`.icf](trio_lnkR5F1---TEMPLATE.icf)__ | The third one is user-selectable. The selection is made based on the similarity in the memory map for distinct groups of RL78 parts. Each of these files hold the proper `Linker Configuration Override` parameters which can be set on the `Project options`. Notice that the `X` in the file name means that the number of pins can be ignored for the purposes of the Trio. |
+| __[trio_lnkR5F1`nn`X`n`.icf](trio_lnkR5F1---TEMPLATE.icf)__ | The first one is __user-selectable__. The selection is made based on the similarity in the memory map for distinct groups of RL78 targets. Each of these files hold the proper `Linker Configuration Override` parameters which can be set on the `Project options`.<br><br>The `X` iwithin the part number means that the linker configuration is offered regardless the target's pin count. For example, __trio_lnkR5F100xE.icf__ should be selected for a __R5F100LE__ target. |
+| [common.icf](common.icf)     | The second is automatically included from the user-selected configuration. This is the heart of the Trio, containing parametrized directives which can be applied to any of the supported RL78 devices. |
+| [self_ram.icf](self_ram.icf) | The third is used by __common.icf__ to evaluate the same [symbol styles](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram) used in the __IAR Embedded Workbench for RL78__ to handle every __Self-RAM__ reservation needs for the Trio. |
 
 
 ## Flash Library Flavors
@@ -60,7 +60,7 @@ Renesas Electronics provides the __RL78 Flash Libraries__ in 3 different flavors
 The __RL78 Flash Libraries__ flavors may be provided on 3 different library types:
 - The **T01** (Type01, also known as **Full**) are the fully fledged Flash Libraries.
 - The **T02** (Type02, also known as **Tiny**) are the balanced ones, providing the main functionalities at expense of less resources when compared with the T01 Libraries.
-- The **T04** (Type04, also known as **Pico**) is the one providing only the essential functionalities. This library type offers the lowest resource usage footprint. Usually this is the typical choice for the scenarios where the chosen RL78 MCU part does not come with plenty of memory.
+- The **T04** (Type04, also known as **Pico**) is the one providing only the essential functionalities. This library type offers the lowest resource usage footprint. Usually this is the suitable choice for the scenarios where the chosen RL78 target comes with constrained memory resources.
 
 > __Note__
 > * For further information regarding the complete feature set provided in each of these flash libraries, refer to their respective [documentation](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram).
@@ -81,7 +81,7 @@ The following sections are going to serve as a straightforward step-by-step guid
 
 As reference, the RL78/G14 MCU (PN# __[R5F104LEAFA](https://www.renesas.com/products/microcontrollers-microprocessors/rl78/rl78g1x/rl78g14/device/R5F104LEAFA.html)__) will be used alongside the most popular __RL78 Flash Libraries__ combinations. 
 
-Based on those steps, any other RL78 part which can use these __RL78 Flash Libraries__ could be then be used in a quite similar way. 
+Those steps should be similarly applicable to other RL78 targets which can rely on these __RL78 Flash Libraries__.
 
 ## Required Software 
 
@@ -119,9 +119,9 @@ The following software components were successfuly usable alongside the __ICF Tr
 **1.** Install the [IAR Embedded Workbench for RL78](https://www.iar.com/iar-embedded-workbench/#!?architecture=RL78).
 
 > __Note__
-> * When installing the IAR Embedded Workbench for RL78, the installer also will offer the possibility to install a code generator tool named [AP4](https://www.renesas.com/products/software-tools/tools/code-generator/ap4-applilet.html). The AP4 is a GUI-based code generator that can generate peripheral drivers in C source containing driver functions for some of the RL78 parts.
+> * When installing the IAR Embedded Workbench for RL78, the installer also will offer the possibility to install a code generator tool named [AP4](https://www.renesas.com/products/software-tools/tools/code-generator/ap4-applilet.html). The AP4 is a GUI-based code generator that can generate peripheral drivers in C source containing driver functions for some of the RL78 targets.
 
-**2.** For the purposes of this general guide, the selected part which will be used is a general purpose RL78/G14 (PN# __[R5F104LEAFA](https://www.renesas.com/products/microcontrollers-microprocessors/rl78/rl78g1x/rl78g14/device/R5F104LEAFA.html)__). The part belongs to the *RL78/G14 Series*. The G14 Series uses a previous version of the AP4, the [Applilet3 for RL78](https://www.renesas.com/software/D4000916.html) configuration tool, which should then be installed.
+**2.** For the purposes of this general guide, the selected target will be a general purpose RL78/G14 (PN# __[R5F104LEAFA](https://www.renesas.com/products/microcontrollers-microprocessors/rl78/rl78g1x/rl78g14/device/R5F104LEAFA.html)__). The target belongs to the *RL78/G14 Series*. The G14 Series uses a previous version of the AP4, the [Applilet3 for RL78](https://www.renesas.com/software/D4000916.html) configuration tool, which should then be installed.
 
 **3.** Install [Git for Windows](https://git-scm.com/download/win) on its defaults.
 
@@ -171,7 +171,7 @@ The following software components were successfuly usable alongside the __ICF Tr
  > Unpacking objects: 100% (58/58), done.
  >~~~
  
-**12.** Back to the __IAR Embedded Workbench for RL78__, go to the Project Options, `Linker` → `Config` → `Override default` and choose the right part number. For this example, __R5F104LEA__ will be used, hence the [trio_lnkR5F104xE.icf](trio_lnkR5F104xE.icf) should (and will) be selected:
+**12.** Back to the __IAR Embedded Workbench for RL78__, go to the Project Options, `Linker` → `Config` → `Override default` and select the appropriate __.icf__ for the target. In this example, the __R5F104LEA__ target will be used, so the [trio_lnkR5F104xE.icf](trio_lnkR5F104xE.icf) will be selected:
 ```
 $PROJ_DIR$\ewrl78-linker-config-flashlibs\trio_lnkR5F104xE.icf
 ```
