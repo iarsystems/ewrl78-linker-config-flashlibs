@@ -12,9 +12,8 @@ __RESERVE_T01_FSL=1
 
 **14.** Install the [RL78 T01-FSL Library](https://www2.renesas.eu/products/micro/download/?oc=SelfLib_RL78) downloadable from its distribution site. Install it for the __IAR Compiler v2.10__ (or later) on the project folder (__$PROJ_DIR$__). The installer will create a folders within the __$PROJ_DIR$__ named __FSL\IAR_210__ (or similar). Adjust it accordingly if necessary, as this installer may create a slighty different folder name depending on the version available.  
 
-| __Remark__ |
-| ---------- |
-| *Before downloading the library using the link above, [__Sign in__](https://www2.renesas.eu/products/micro/download/index.html/auth/login) to the European Downloads "MyPages" site ([here](https://www2.renesas.eu/products/micro/download/index.html)) if necessary. The credentials for __"MyPages"__ may differ from the __"MyRenesas"__ credentials.* |
+> __Note__ 
+> * Before downloading the library using the link above, [__Sign in__](https://www2.renesas.eu/products/micro/download/index.html/auth/login) to the European Downloads "MyPages" site ([here](https://www2.renesas.eu/products/micro/download/index.html)) if necessary. The credentials for __"MyPages"__ may differ from the __"MyRenesas"__ credentials.
 
 ---
 
@@ -144,14 +143,16 @@ void main(void)
 
 **25.** Activate the __Watch Window__ by selecting `View` → `Watch` → `Watch1`. This window will allow you to add expressions to watch the contents of global variables. `<Click to add>` __ReadStringNEAR__, __ReadStringFAR__ and __WriteString__.
 
-**26.**  Hit `Go` on the __Debug Toolbar__ (or press `F5`) and verify if the variables contents match.
+**26.**  Hit `Go` on the __Debug Toolbar__ (or press <kbd>F5</kbd>) and verify if the variables contents match.
 
-| __Remark__ |
-| ---------- |
-| *The data written into the __Code Flash__ can also be directly seen by activating the __Memory Window__. In this case, select `View` → `Memory` → `Memory1` and `Go to` the address __&ReadStringFAR__.* |
-| ![T01-FSL Memory1 View](images/t01_fsl_memory1.png) |
-| *The same data will be also available from the Near Memory __(0xF0000-0xFFFFF)__, which provides a computationally cheaper way of accessing the same data. This area is addressable by 16-bit pointers. Activate a new __Memory Window__ by selecting `View` → `Memory` → `Memory2` and `Go to` the address __&ReadStringNEAR__ to visit the __Mirrored Data__.* |
-| ![T01-FSL Memory2 View](images/t01_fsl_memory2.png) |
+> __Notes__ 
+> * The data written into the __Code Flash__ can also be directly seen by activating the __Memory Window__. In this case, select `View` → `Memory` → `Memory1` and `Go to` the address __&ReadStringFAR__.
+>
+> ![T01-FSL Memory1 View](images/t01_fsl_memory1.png) 
+>
+> * The same data will be also available from the Near Memory __(0xF0000-0xFFFFF)__, which provides a computationally cheaper way of accessing the same data. This area is addressable by 16-bit pointers. Activate a new __Memory Window__ by selecting `View` → `Memory` → `Memory2` and `Go to` the address __&ReadStringNEAR__ to visit the __Mirrored Data__.
+>
+> ![T01-FSL Memory2 View](images/t01_fsl_memory2.png) 
 
 ---
 
