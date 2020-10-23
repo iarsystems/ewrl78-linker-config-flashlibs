@@ -18,7 +18,7 @@
 
 ## What is the purpose of the ICF Trio Project?
 
-The __ICF Trio__ project was developed for __IAR Embedded Workbench for Renesas RL78__ version __3.10 or later__. It uses a set of 3 files which together towards an optimal linker configuration for the memory reservation requirements when there are __RL78 Flash Libraries__ in use.
+The __ICF Trio__ project was developed for __IAR Embedded Workbench for Renesas RL78__ version __3.10 or later__. It uses a set of 3 files which together will lead to a proper linker configuration for the memory reservation requirements when there are __RL78 Flash Libraries__ in use.
 
 > __Notes__
 > * Although it is highly recommended to stay with the latest release of the IDE when starting new projects to take advantage of bug fixes and improved experience, we kept a reference for a simple [tweak](tweak.md) for our long standing EWRL78 v2.x users.
