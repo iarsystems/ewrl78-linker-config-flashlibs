@@ -93,14 +93,14 @@ The following software components were successfuly usable alongside the __ICF Tr
 
 ### RL78 Flash Libraries, documentation and their respective required linker symbols for Self-RAM
 
-|  __RL78 Flash Library__         | __Documentation__                        | __Symbol__            | __Description__                                                     |
-| :-----------------------------: | :--------------------------------------: | :-------------------: | :------------------------------------------------------------------ |
-| [T01-FSL Download][t01-fsl-url] | [T01-FSL Documentation][t01-fsl-doc-url] | `__RESERVE_T01_FSL=1` | Reserves Self-RAM for use with Code Flash Library __T01-FSL__       |
-| [T01-FDL Download][t0x-xxl-url] | [T01-FDL Documentation][t01-fdl-doc-url] | `__RESERVE_T01_FDL=1` | Reserves Self-RAM for use with Data Flash Library __T01-FDL__       |
-| [T01-EEL Download][t0x-xxl-url] | [T01-EEL Documentation][t01-eel-doc-url] | `__RESERVE_T01_EEL=1` | Reserves Self-RAM for use with EEPROM Emulation Library __T01-EEL__ |
-| [T02-FDL Download][t0x-xxl-url] | [T02-FDL Documentation][t02-fdl-doc-url] | `__RESERVE_T02_FDL=1` | Reserves Self-RAM for use with Tiny Data Flash Library __T02-FDL__  |
-| [T02-EEL Download][t0x-xxl-url] | [T02-EEL Documentation][t02-eel-doc-url] | `__RESERVE_T02_EEL=1` | Reserves Self-RAM for use with EEPROM Emulation Library __T02-EEL__ |
-| [T04-FDL Download][t0x-xxl-url] | [T04-FDL Documentation][t04-fdl-doc-url] | `__RESERVE_T04_FDL=1` | Reserves Self-RAM for use with Pico Flash Lbrary __T04-FDL__        |
+| __RL78 Flash Library__ | __Documentation__          | __Symbol__            | __Description__                                                 |
+| :--------------------: | :------------------------: | :-------------------: | :-------------------------------------------------------------- |
+| [T01-FSL][t01-fsl-url] | [T01-FSL][t01-fsl-doc-url] | `__RESERVE_T01_FSL=1` | Reserves Self-RAM for the __T01-FSL__ Code Flash Library        |
+| [T01-FDL][t0x-xxl-url] | [T01-FDL][t01-fdl-doc-url] | `__RESERVE_T01_FDL=1` | Reserves Self-RAM for the __T01-FDL__ Data Flash Library        |
+| [T01-EEL][t0x-xxl-url] | [T01-EEL][t01-eel-doc-url] | `__RESERVE_T01_EEL=1` | Reserves Self-RAM for the __T01-EEL__ EEPROM Emulation Library  |
+| [T02-FDL][t0x-xxl-url] | [T02-FDL][t02-fdl-doc-url] | `__RESERVE_T02_FDL=1` | Reserves Self-RAM for the __T02-FDL__ Tiny Data Flash Library   |
+| [T02-EEL][t0x-xxl-url] | [T02-EEL][t02-eel-doc-url] | `__RESERVE_T02_EEL=1` | Reserves Self-RAM for the __T02-EEL__ EEPROM Emulation Library  |
+| [T04-FDL][t0x-xxl-url] | [T04-FDL][t04-fdl-doc-url] | `__RESERVE_T04_FDL=1` | Reserves Self-RAM for the __T04-FDL__ Pico Flash Lbrary         |
 
 [t01-fsl-url]:     https://www2.renesas.eu/products/micro/download/?oc=SelfLib_RL78
 [t0x-xxl-url]:     https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78
@@ -188,9 +188,9 @@ From this point you can now choose one of the examples below, which contains fur
 
 | __Example__                       | __Description__ |
 | :-------------------------------- | :-------------- |
-| [Example for T04-FDL](t04-fdl.md) | Creates a simple program which uses the T04-FDL Library in order to store some data in the RL78 __Data Flash__ | 
-| [Example for T01-FSL](t01-fsl.md) | Creates a simple program which uses the T01-FSL Library in order to store some data in the RL78 __Code Flash__ |
-| [Example for T02-EEL](t02-eel.md) | Creates a program which uses the T02-EEL Library and its corresponding dependency, the T02-FDL library. It exercises storing and retrieving data from the __EEL pool__ as well as from the __FDL pool__, both located into the RL78 __Data Flash__ |
+| [T04-FDL](t04-fdl.md) | Creates a simple program which uses the T04-FDL Library in order to store some data in the RL78 __Data Flash__ | 
+| [T01-FSL](t01-fsl.md) | Creates a simple program which uses the T01-FSL Library in order to store some data in the RL78 __Code Flash__ |
+| [T02-EEL](t02-eel.md) | Creates a program which uses the T02-EEL Library and its corresponding dependency, the T02-FDL library. It exercises storing and retrieving data from the __EEL pool__ as well as from the __FDL pool__, both located into the RL78 __Data Flash__ |
 
 ## ICF Trio on IAR Embedded Workbench for RL78 v2.x
 
