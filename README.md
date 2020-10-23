@@ -49,7 +49,7 @@ In this section you can understand how the __ICF Trio__ components fit together.
 
 ## Flash Library Flavors
 
-The Renesas RL78 MCUs require specific set of library(/ies) to enable usage of its Flash Memories.
+The Renesas RL78 MCUs require specific set of library(/ies) to enable usage of their Flash Memories.
 
 Renesas Electronics provides the __RL78 Flash Libraries__ in 3 different flavors:
 - The **FSL** (Flash Self-Programming Library) does program the RL78's __Code Flash__. 
@@ -59,10 +59,10 @@ Renesas Electronics provides the __RL78 Flash Libraries__ in 3 different flavors
 
 ## Flash Library Types 
 
-The __RL78 Flash Libraries__ flavors may be provided on 3 different library types:
+The __RL78 Flash Libraries__ flavors may be provided as one of the following library types:
 - The **T01** (Type01, also known as **Full**) are the fully fledged Flash Libraries.
 - The **T02** (Type02, also known as **Tiny**) are the balanced ones, providing the main functionalities at expense of less resources when compared with the T01 Libraries.
-- The **T04** (Type04, also known as **Pico**) is the one providing only the essential functionalities. This library type offers the lowest resource usage footprint. Usually this is the suitable choice for the scenarios where the chosen RL78 target comes with constrained memory resources.
+- The **T04** (Type04, also known as **Pico**) is the one providing only the bare essential functionalities. This library type offers the lowest resource usage footprint. Usually this is the suitable choice for the scenarios where the chosen RL78 target comes with constrained memory resources.
 
 > __Note__
 > * For further information regarding the complete feature set provided in each of these flash libraries, refer to their respective [documentation](README.md#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram).
@@ -81,9 +81,9 @@ In order to tremendously simplify this process, the __ICF Trio__ mostly automate
 
 The following sections are going to serve as a straightforward step-by-step guide containing what is considered to be near the minimal actions that should be taken from scratch to configure a project to use the __ICF Trio__.
 
-As reference, the RL78/G14 MCU (PN# __[R5F104LEAFA](https://www.renesas.com/products/microcontrollers-microprocessors/rl78/rl78g1x/rl78g14/device/R5F104LEAFA.html)__) will be used alongside the most popular __RL78 Flash Libraries__ combinations. 
+As reference, the RL78/G14 MCU (PN# __[R5F104LEAFA][R5F104LEAFA-url]__) will be used alongside the most popular __RL78 Flash Libraries__ combinations. Even then, the following steps should be similarly applicable to other RL78 targets.
 
-Those steps should be similarly applicable to other RL78 targets which can rely on these __RL78 Flash Libraries__.
+[R5F104LEAFA-url]: https://www.renesas.com/products/microcontrollers-microprocessors/rl78/rl78g1x/rl78g14/device/R5F104LEAFA.html
 
 ## Required Software 
 
