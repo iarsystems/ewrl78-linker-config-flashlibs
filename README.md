@@ -93,14 +93,14 @@ The following software components were successfuly usable alongside the __ICF Tr
 
 ### RL78 Flash Libraries, documentation and their respective required linker symbols for Self-RAM
 
-| __RL78 Flash Library__ | __Documentation__          | __Symbol__            | __Description__                                                 |
-| :--------------------: | :------------------------: | :-------------------: | :-------------------------------------------------------------- |
-| [T01-FSL][t01-fsl-url] | [T01-FSL][t01-fsl-doc-url] | `__RESERVE_T01_FSL=1` | Reserves Self-RAM for the __T01-FSL__ Code Flash Library        |
-| [T01-FDL][t0x-xxl-url] | [T01-FDL][t01-fdl-doc-url] | `__RESERVE_T01_FDL=1` | Reserves Self-RAM for the __T01-FDL__ Data Flash Library        |
-| [T01-EEL][t0x-xxl-url] | [T01-EEL][t01-eel-doc-url] | `__RESERVE_T01_EEL=1` | Reserves Self-RAM for the __T01-EEL__ EEPROM Emulation Library  |
-| [T02-FDL][t0x-xxl-url] | [T02-FDL][t02-fdl-doc-url] | `__RESERVE_T02_FDL=1` | Reserves Self-RAM for the __T02-FDL__ Tiny Data Flash Library   |
-| [T02-EEL][t0x-xxl-url] | [T02-EEL][t02-eel-doc-url] | `__RESERVE_T02_EEL=1` | Reserves Self-RAM for the __T02-EEL__ EEPROM Emulation Library  |
-| [T04-FDL][t0x-xxl-url] | [T04-FDL][t04-fdl-doc-url] | `__RESERVE_T04_FDL=1` | Reserves Self-RAM for the __T04-FDL__ Pico Flash Lbrary         |
+| __RL78 Flash Library__ | __Documentation__          | __Symbol__            | __Reserves Self-RAM for the...__         |
+| :--------------------: | :------------------------: | :-------------------: | :--------------------------------------- |
+| [T01-FSL][t01-fsl-url] | [T01-FSL][t01-fsl-doc-url] | `__RESERVE_T01_FSL=1` | ...__T01-FSL__ Code Flash Library        |
+| [T01-FDL][t0x-xxl-url] | [T01-FDL][t01-fdl-doc-url] | `__RESERVE_T01_FDL=1` | ...__T01-FDL__ Data Flash Library        |
+| [T01-EEL][t0x-xxl-url] | [T01-EEL][t01-eel-doc-url] | `__RESERVE_T01_EEL=1` | ...__T01-EEL__ EEPROM Emulation Library  |
+| [T02-FDL][t0x-xxl-url] | [T02-FDL][t02-fdl-doc-url] | `__RESERVE_T02_FDL=1` | ...__T02-FDL__ Tiny Data Flash Library   |
+| [T02-EEL][t0x-xxl-url] | [T02-EEL][t02-eel-doc-url] | `__RESERVE_T02_EEL=1` | ...__T02-EEL__ EEPROM Emulation Library  |
+| [T04-FDL][t0x-xxl-url] | [T04-FDL][t04-fdl-doc-url] | `__RESERVE_T04_FDL=1` | ...__T04-FDL__ Pico Flash Lbrary         |
 
 [t01-fsl-url]:     https://www2.renesas.eu/products/micro/download/?oc=SelfLib_RL78
 [t0x-xxl-url]:     https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78
