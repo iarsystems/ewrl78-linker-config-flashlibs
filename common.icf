@@ -27,7 +27,7 @@ if (isdefinedsymbol(__RESERVE_OCD_ROM))
 {
   if (__RESERVE_OCD_ROM == 1)
   {
-    define region OCD_ROM_AREA = mem:[from (_FLASH_END & 0x0FE00) to (_FLASH_END)];
+    define region OCD_ROM_AREA = mem:[from (_FLASH_END & 0x0FE00) size 0x200];
     define region EXCLUDE_OCD_MIRROR = mem:[from (start(OCD_ROM_AREA) | 0xF0000) size 0x200];
   }
   else
