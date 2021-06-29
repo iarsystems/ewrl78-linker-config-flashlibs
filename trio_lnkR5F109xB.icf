@@ -1,6 +1,6 @@
 // Specific: R5F109xA (x = 6,A,B,G,L)
-define symbol _FLASH_END    = 0x03FFF;
-define symbol _RAM_START    = 0xFFB00;
+define symbol _FLASH_END    = 0x05FFF;
+define symbol _RAM_START    = 0xFF900;
 define symbol _DATAFLASH_SZ = 4K;
 export symbol _DATAFLASH_SZ;
 
