@@ -1,7 +1,7 @@
-// Specific: R5F10CxE
+// Specific: R5F10CxE (x = M)
 define symbol _FLASH_END    = 0x0FFFF;
 define symbol _RAM_START    = 0xFEF00;
-define symbol _DATAFLASH_SZ = 4K;
+define symbol _DATAFLASH_SZ = 8K;
 export symbol _DATAFLASH_SZ;
 
 // Maximum number of variables for EEPROM Emulation Layer Libraries

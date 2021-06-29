@@ -1,4 +1,4 @@
-// Specific: R5F10DxJ (x = M,P)
+// Specific: R5F10DSJ
 define symbol _FLASH_END    = 0x3FFFF;
 define symbol _RAM_START    = 0xFBF00;
 define symbol _DATAFLASH_SZ = 8K;
@@ -9,11 +9,11 @@ define symbol _T01_EEL_NUM_VARS = 255; // [1~255]
 define symbol _T02_EEL_NUM_VARS = 64;  // [1~64]
 
 // Flash Libraries Self RAM  (referenced in r20ut2944ej0305_rl78.pdf)
-define symbol _T01_FSL_SZ   = 0x400;
-define symbol _T01_FDL_SZ   = 0xC0;
-define symbol _T01_EEL_SZ   = (0x200 + (2 * _T01_EEL_NUM_VARS));
-define symbol _T02_FDL_SZ   = 0xA0;
-define symbol _T02_EEL_SZ   = (0x100 + (2 * _T02_EEL_NUM_VARS));
-define symbol _T04_FDL_SZ   = 0x88;
+define symbol _T01_FSL_SZ   = 0x0;
+define symbol _T01_FDL_SZ   = 0x0;
+define symbol _T01_EEL_SZ   = 0x0;
+define symbol _T02_FDL_SZ   = 0x0;
+define symbol _T02_EEL_SZ   = 0x0;
+define symbol _T04_FDL_SZ   = 0x0;
 
 include "common.icf";

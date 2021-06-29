@@ -1,4 +1,4 @@
-// Specific: R5F10DxL
+// Specific: R5F10DxL (x = P,S)
 define symbol _FLASH_END    = 0x7FFFF;
 define symbol _RAM_START    = 0xF9F00;
 define symbol _DATAFLASH_SZ = 8K;
