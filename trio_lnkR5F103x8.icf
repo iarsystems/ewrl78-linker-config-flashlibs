@@ -1,7 +1,7 @@
-// Specific: R5F102x8 (x = 6,7)
+// Specific: R5F103x8 (x = 6,7)
 define symbol _FLASH_END    = 0x01FFF;
 define symbol _RAM_START    = 0xFFC00;
-define symbol _DATAFLASH_SZ = 2K;
+define symbol _DATAFLASH_SZ = 0;
 export symbol _DATAFLASH_SZ;
 
 // Flash Libraries Self RAM

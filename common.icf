@@ -4,7 +4,7 @@
 //      IAR ILinker's ICF file format version 2
 //      Compatible with IAR Embedded Workbench for Renesas RL78 version 3+
 //
-//      Version 1.02
+//      Version 1.03
 //-------------------------------------------------------------------------
 
 // Required symbol for the newer ICF format in IAR Embedded Workbench for RL78 v3.x and later to work
@@ -50,14 +50,14 @@ define region HOTPLUGIN_RAM = NOWHERE;
 define region EXCLUDE_ROM_REGION = OCD_ROM_AREA;
 define region EXCLUDE_RAM_REGION = HOTPLUGIN_RAM | OCD_TRACE_RAM | SELF_RAM;
 
-define region ROM_near = mem:[from _FLASH_START to (_FLASH_END & 0x0FFFF)]  - EXCLUDE_ROM_REGION;
-define region ROM_far  = mem:[from _FLASH_START to _FLASH_END]              - EXCLUDE_ROM_REGION;
-define region ROM_huge = mem:[from _FLASH_START to _FLASH_END]              - EXCLUDE_ROM_REGION;
+define region ROM_near = mem:[from _FLASH_START to (_FLASH_END & 0x0FFFF)] - EXCLUDE_ROM_REGION;
+define region ROM_far  = mem:[from _FLASH_START to _FLASH_END]             - EXCLUDE_ROM_REGION;
+define region ROM_huge = mem:[from _FLASH_START to _FLASH_END]             - EXCLUDE_ROM_REGION;
 
-define region SADDR    = mem:[from 0xFFE20 to 0xFFEDF]         - EXCLUDE_RAM_REGION;
-define region RAM_near = mem:[from _RAM_START to _RAM_END]     - EXCLUDE_RAM_REGION;
-define region RAM_far  = mem:[from _RAM_START to _RAM_END]     - EXCLUDE_RAM_REGION;
-define region RAM_huge = mem:[from _RAM_START to _RAM_END]     - EXCLUDE_RAM_REGION;
+define region SADDR    = mem:[from 0xFFE20 to 0xFFEDF]     - EXCLUDE_RAM_REGION;
+define region RAM_near = mem:[from _RAM_START to _RAM_END] - EXCLUDE_RAM_REGION;
+define region RAM_far  = mem:[from _RAM_START to _RAM_END] - EXCLUDE_RAM_REGION;
+define region RAM_huge = mem:[from _RAM_START to _RAM_END] - EXCLUDE_RAM_REGION;
 
 define region VECTOR   = mem:[from 0x00000 to 0x0007F];
 define region CALLT    = mem:[from 0x00080 to 0x000BF];
@@ -174,43 +174,51 @@ if (_NEAR_CONST_LOCATION_SIZE > 0)
 
 
 /* These sections can be used for build-time data placement at Data Flash's existing blocks */
-if (_DATAFLASH_SZ == 2k)
+if (_DATAFLASH_SZ > 0)
 {
-    define region DATAFLASH_BLK_0 = mem:[from 0xF1000 size 0x400];
-    define region DATAFLASH_BLK_1 = mem:[from 0xF1400 size 0x400];
+    define region DATAFLASH_BLK_0 = mem:[from 0xF1000 size 1K];
+    define region DATAFLASH_BLK_1 = mem:[from 0xF1400 size 1K];
 
     "DATAFLASH_BLK_0":place at start of DATAFLASH_BLK_0  { rw section DATAFLASH_BLK0 };
     "DATAFLASH_BLK_1":place at start of DATAFLASH_BLK_1  { rw section DATAFLASH_BLK1 };
 }
-if (_DATAFLASH_SZ == 4k)
+if (_DATAFLASH_SZ > 2K)
 {
-    define region DATAFLASH_BLK_0 = mem:[from 0xF1000 size 0x400];
-    define region DATAFLASH_BLK_1 = mem:[from 0xF1400 size 0x400];
-    define region DATAFLASH_BLK_2 = mem:[from 0xF1800 size 0x400];
-    define region DATAFLASH_BLK_3 = mem:[from 0xF1C00 size 0x400];
+    define region DATAFLASH_BLK_2 = mem:[from 0xF1800 size 1K];
+    define region DATAFLASH_BLK_3 = mem:[from 0xF1C00 size 1K];
 
-    "DATAFLASH_BLK_0":place in DATAFLASH_BLK_0  { rw section DATAFLASH_BLK0 };
-    "DATAFLASH_BLK_1":place in DATAFLASH_BLK_1  { rw section DATAFLASH_BLK1 };
     "DATAFLASH_BLK_2":place in DATAFLASH_BLK_2  { rw section DATAFLASH_BLK2 };
     "DATAFLASH_BLK_3":place in DATAFLASH_BLK_3  { rw section DATAFLASH_BLK3 };
 }
-if (_DATAFLASH_SZ == 8k)
+if (_DATAFLASH_SZ > 4K)
 {
-    define region DATAFLASH_BLK_0 = mem:[from 0xF1000 size 0x400];
-    define region DATAFLASH_BLK_1 = mem:[from 0xF1400 size 0x400];
-    define region DATAFLASH_BLK_2 = mem:[from 0xF1800 size 0x400];
-    define region DATAFLASH_BLK_3 = mem:[from 0xF1C00 size 0x400];
-    define region DATAFLASH_BLK_4 = mem:[from 0xF2000 size 0x400];
-    define region DATAFLASH_BLK_5 = mem:[from 0xF2400 size 0x400];
-    define region DATAFLASH_BLK_6 = mem:[from 0xF2800 size 0x400];
-    define region DATAFLASH_BLK_7 = mem:[from 0xF2C00 size 0x400];
+    define region DATAFLASH_BLK_4 = mem:[from 0xF2000 size 1K];
+    define region DATAFLASH_BLK_5 = mem:[from 0xF2400 size 1K];
+    define region DATAFLASH_BLK_6 = mem:[from 0xF2800 size 1K];
+    define region DATAFLASH_BLK_7 = mem:[from 0xF2C00 size 1K];
 
-    "DATAFLASH_BLK_0":place at start of DATAFLASH_BLK_0  { rw section DATAFLASH_BLK0 };
-    "DATAFLASH_BLK_1":place at start of DATAFLASH_BLK_1  { rw section DATAFLASH_BLK1 };
-    "DATAFLASH_BLK_2":place at start of DATAFLASH_BLK_2  { rw section DATAFLASH_BLK2 };
-    "DATAFLASH_BLK_3":place at start of DATAFLASH_BLK_3  { rw section DATAFLASH_BLK3 };
     "DATAFLASH_BLK_4":place at start of DATAFLASH_BLK_4  { rw section DATAFLASH_BLK4 };
     "DATAFLASH_BLK_5":place at start of DATAFLASH_BLK_5  { rw section DATAFLASH_BLK5 };
     "DATAFLASH_BLK_6":place at start of DATAFLASH_BLK_6  { rw section DATAFLASH_BLK6 };
     "DATAFLASH_BLK_7":place at start of DATAFLASH_BLK_7  { rw section DATAFLASH_BLK7 };
+}
+if (_DATAFLASH_SZ > 8K)
+{
+    define region DATAFLASH_BLK_8 = mem:[from 0xF3000 size 1K];
+    define region DATAFLASH_BLK_9 = mem:[from 0xF3400 size 1K];
+    define region DATAFLASH_BLK_A = mem:[from 0xF3800 size 1K];
+    define region DATAFLASH_BLK_B = mem:[from 0xF3C00 size 1K];
+    define region DATAFLASH_BLK_C = mem:[from 0xF4000 size 1K];
+    define region DATAFLASH_BLK_D = mem:[from 0xF4400 size 1K];
+    define region DATAFLASH_BLK_E = mem:[from 0xF4800 size 1K];
+    define region DATAFLASH_BLK_F = mem:[from 0xF4C00 size 1K];
+
+    "DATAFLASH_BLK_8":place at start of DATAFLASH_BLK_8  { rw section DATAFLASH_BLK8 };
+    "DATAFLASH_BLK_9":place at start of DATAFLASH_BLK_9  { rw section DATAFLASH_BLK9 };
+    "DATAFLASH_BLK_A":place at start of DATAFLASH_BLK_A  { rw section DATAFLASH_BLKA };
+    "DATAFLASH_BLK_B":place at start of DATAFLASH_BLK_B  { rw section DATAFLASH_BLKB };
+    "DATAFLASH_BLK_C":place at start of DATAFLASH_BLK_C  { rw section DATAFLASH_BLKC };
+    "DATAFLASH_BLK_D":place at start of DATAFLASH_BLK_D  { rw section DATAFLASH_BLKD };
+    "DATAFLASH_BLK_E":place at start of DATAFLASH_BLK_E  { rw section DATAFLASH_BLKE };
+    "DATAFLASH_BLK_F":place at start of DATAFLASH_BLK_F  { rw section DATAFLASH_BLKF };
 }

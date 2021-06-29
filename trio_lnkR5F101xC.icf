@@ -1,17 +1,17 @@
-// Specific: R5F109xA
-define symbol _FLASH_END    = 0x03FFF;
-define symbol _RAM_START    = 0xFFB00;
-define symbol _DATAFLASH_SZ = 2K;
+// Specific: R5F101xC (x = 6-8,A-C,E-G,J,L)
+define symbol _FLASH_END    = 0x07FFF;
+define symbol _RAM_START    = 0xFF700;
+define symbol _DATAFLASH_SZ = 0;
 export symbol _DATAFLASH_SZ;
 
 // Maximum number of variables for EEPROM Emulation Layer Libraries
 define symbol _T01_EEL_NUM_VARS = 255; // [1~255]
 define symbol _T02_EEL_NUM_VARS = 64;  // [1~64]
 
-// Flash Libraries Self RAM
-// There is no reservation for Self-RAM on the other RL78 models
+// Flash Libraries Self RAM  (referenced in r20ut2944ej0305_rl78.pdf)
 define symbol _T01_FSL_SZ   = 0x0;
 define symbol _T01_FDL_SZ   = 0x0;
+define symbol _T01_EEL_SZ   = 0x0;
 define symbol _T02_FDL_SZ   = 0x0;
 define symbol _T02_EEL_SZ   = 0x0;
 define symbol _T04_FDL_SZ   = 0x0;

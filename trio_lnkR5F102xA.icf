@@ -1,14 +1,14 @@
-// Specific: R5F102xA
+// Specific: R5F102xA (x = 6,7)
 define symbol _FLASH_END    = 0x03FFF;
 define symbol _RAM_START    = 0xFF900;
-define symbol _DATAFLASH_SZ = 2k;
+define symbol _DATAFLASH_SZ = 2K;
 export symbol _DATAFLASH_SZ;
 
 // Maximum number of variables for EEPROM Emulation Layer Libraries
-define symbol _T01_EEL_NUM_VARS = 256; // [1~256]
+define symbol _T01_EEL_NUM_VARS = 255; // [1~255]
 define symbol _T02_EEL_NUM_VARS = 64;  // [1~64]
 
-// Flash Libraries Self RAM  (referenced in r20ut2944ej0301_rl78.pdf)
+// Flash Libraries Self RAM  (referenced in r20ut2944ej0305_rl78.pdf)
 define symbol _T01_FSL_SZ   = 0x380;
 define symbol _T01_FDL_SZ   = 0xC0;
 define symbol _T01_EEL_SZ   = (0x200 + (2 * _T01_EEL_NUM_VARS));

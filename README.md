@@ -1,21 +1,5 @@
 # ICF Trio
 
-## Table of Contents
-- [What is the purpose of the ICF Trio Project?](#what-is-the-purpose-of-the-icf-trio-project)
-- [Benefits](#benefits)
-- [Linker Configuration Trio Layout Specification](#linker-configuration-trio-layout-specification)
-- [Flash Library Flavors](#flash-library-flavors)
-- [Flash Library Types](#flash-library-types)
-- [Self-RAM](#self-ram)
-- [How to use the ICF Trio](#how-to-use-the-icf-trio)
-- [Required Software](#required-software)
-- [RL78 Flash Libraries, documentation and Symbols](#rl78-flash-libraries-documentation-and-their-respective-required-linker-symbols-for-self-ram)
-- [Usage Guidelines](#usage-guidelines)
-    - [Install the tools](#install-the-tools)
-    - [Applilet3 base project creation](#applilet3-base-project-creation)
-- [Coding Examples](#coding-examples)
-
-
 ## What is the purpose of the ICF Trio Project?
 
 The __ICF Trio__ project was developed for __IAR Embedded Workbench for Renesas RL78__ version __3.10 or later__. It uses a set of 3 files which together will lead to a proper linker configuration for the memory reservation requirements when there are __RL78 Flash Libraries__ in use.
@@ -66,7 +50,7 @@ The __RL78 Flash Libraries__ flavors may be provided as one of the following lib
 
 ## Self-RAM 
 
-Typically for every combination of RL78 MCU and __RL78 Flash Library__, the programmer would need to refer to the *Renesas Electronics*'  **[Application Note 2944](https://www.renesas.com/doc/products/tool/doc/015/r20ut2944ej0302_rl78.pdf)** in order to know if the chosen combination will require some specific RAM range to be reserved, therefore the chosen combination can function properly.
+Typically for every combination of RL78 MCU and __RL78 Flash Library__, the programmer would need to refer to the *Renesas Electronics*'  **[Application Note 2944](https://www.renesas.com/us/en/document/mah/rl78-family-self-ram-list-flash-self-programming-library)** in order to know if the chosen combination will require some specific RAM range to be reserved, therefore the chosen combination can function properly.
 
 Self-RAM refers to the aforementioned RAM area, which __must__ be reserved on some cases, when relying on the RL78 MCU's self-programming capabilities.
 
