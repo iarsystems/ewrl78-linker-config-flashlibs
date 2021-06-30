@@ -53,19 +53,19 @@
 //      - _T04_FDL_SZ (typically  [0x88] bytes)
 //   If no Self-RAM reservation is required for the device leave it set to 0x0.
 //
-// #5 - Optional: optimize memory reservation for EEL
+// #5 - Optional: optimize Self-RAM reservation when using EEL
 //      The template instructs to reserve the amount of Self-RAM for the
-//      maximum number of variables. 
+//      maximum number of EEL variables. 
 //      This amount can be reduced to meet each application's requirements. 
 //      (refer to `note2` and `note3` of the r20ut2944 document)
 //      This can be significant as it reserves 2 bytes per variable.
 //      Examples:
-//           T01_EEL w/   1 variable  : 512 + 2 * 1   =  514 bytes (~50%)
-//           T01_EEL w/ 255 variables : 512 + 2 * 255 = 1022 bytes 
+//           _T01_EEL_NUM_VARS = 255 -> 512 + 2 * 255 = 1022 bytes 
+//           _T01_EEL_NUM_VARS = 1   -> 512 + 2 * 1   =  514 bytes (~50%)
 //
-//           T02_EEL w/   1 variable  : 256 + 2 * 1   =  258 bytes (~67%)
-//           T02_EEL w/  64 variables : 256 + 2 * 64  =  384 bytes 
-//      
+//           _T02_EEL_NUM_VARS = 64  -> 256 + 2 * 64  =  384 bytes 
+//           _T02_EEL_NUM_VARS = 1   -> 256 + 2 * 1   =  258 bytes (~67%)
+//     
 // #6 - Save the .icf template with an appropriate name for the device/series.
 
 // Specific: R5F1---TEMPLATE
