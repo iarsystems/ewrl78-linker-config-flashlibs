@@ -1,5 +1,5 @@
 // This template can be customized to meet any RL78 (R5F1xx) device.
-
+//
 // Instructions:
 // #1 - Define _FLASH_END:
 //   Flash(KB) -- FINAL_FLASH_ADDRESS
@@ -17,7 +17,7 @@
 //         256 -> 0x3FFFF
 //         384 -> 0x5FFFF
 //         512 -> 0x7FFFF
-
+//
 // #2 - Define _RAM_START:
 //    RAM (KB) -- RAM_INITIAL_ADDRESS
 //        0.50 -> 0xFFD00
@@ -39,26 +39,38 @@
 //          26 -> 0xF9700
 //          32 -> 0xF7F00
 //          48 -> 0xF3F00
-
+//
 // #3 - Define _DATAFLASH_SZ
-//      Choose the option (0 || 2K || 4K || 8K || 16K) according to the device.
-
+//      Choose the option [0 || 2K || 4K || 8K || 16K] according to the device.
+//
 // #4 - Define the following Self-RAM size requirements according
 //      To the document r20ut2944ejXXXX_rl78
-//      - _T01_FSL_SZ (typically 0x400 bytes)
-//      - _T01_FDL_SZ (typically 0x0C0 bytes)
-//      - _T01_EEL_SZ (typically (0x200 + (2 * _T01_EEL_NUM_VARS)) bytes)
-//      - _T02_FDL_SZ (typically 0xA0 bytes)
-//      - _T02_EEL_SZ (typically (0x100 + (2 * _T02_EEL_NUM_VARS)) bytes)
-//      - _T04_FDL_SZ (typically 0x88 bytes)
+//      - _T01_FSL_SZ (typically [0x400] bytes)
+//      - _T01_FDL_SZ (typically  [0xC0] bytes)
+//      - _T01_EEL_SZ (typically [(0x200 + (2 * _T01_EEL_NUM_VARS))] bytes)
+//      - _T02_FDL_SZ (typically  [0xA0] bytes)
+//      - _T02_EEL_SZ (typically [(0x100 + (2 * _T02_EEL_NUM_VARS))] bytes)
+//      - _T04_FDL_SZ (typically  [0x88] bytes)
 //   If no Self-RAM reservation is required for the device leave it set to 0x0.
-
-// #5 - Save the .icf template with an appropriate name for the device/series.
+//
+// #5 - Optional: optimize memory reservation for EEL
+//      The template reserves the amount of Self-RAM for the maximum number
+//      of variables. This amount can be reduced to meet each application's
+//      requirements.
+//      This can be significant as it reserves 2 bytes per variable.
+//      Examples:
+//           T01_EEL w/   1 variable  : 512 + 2 * 1   =  514 bytes (~50%)
+//           T01_EEL w/ 255 variables : 512 + 2 * 255 = 1022 bytes 
+//
+//           T02_EEL w/   1 variable  : 256 + 2 * 1   =  258 bytes (~67%)
+//           T02_EEL w/  64 variables : 256 + 2 * 64  =  384 bytes 
+//      
+// #6 - Save the .icf template with an appropriate name for the device/series.
 
 // Specific: R5F1---TEMPLATE
-define symbol _FLASH_END    = 0x[FINAL_FLASH_ADDRESS] ;
-define symbol _RAM_START    = 0x[RAM_INITIAL_ADDRESS] ;
-define symbol _DATAFLASH_SZ = [0 || 2K || 4K || 8K || 16K] ;
+define symbol _FLASH_END    = [FINAL_FLASH_ADDRESS] ;
+define symbol _RAM_START    = [RAM_INITIAL_ADDRESS] ;
+define symbol _DATAFLASH_SZ = [ 0 || 2K || 4K || 8K || 16K ] ;
 export symbol _DATAFLASH_SZ;
 
 // Maximum number of variables for EEPROM Emulation Layer Libraries
