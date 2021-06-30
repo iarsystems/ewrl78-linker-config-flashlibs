@@ -56,7 +56,7 @@
 // #5 - Optional: optimize memory reservation for EEL
 //      The template reserves the amount of Self-RAM for the maximum number
 //      of variables. This amount can be reduced to meet each application's
-//      requirements.
+//      requirements. (refer to `note2` and `note3` of the r20ut2944 document)
 //      This can be significant as it reserves 2 bytes per variable.
 //      Examples:
 //           T01_EEL w/   1 variable  : 512 + 2 * 1   =  514 bytes (~50%)
