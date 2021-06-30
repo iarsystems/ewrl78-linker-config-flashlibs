@@ -47,16 +47,17 @@
 //      To the document r20ut2944ejXXXX_rl78
 //      - _T01_FSL_SZ (typically [0x400] bytes)
 //      - _T01_FDL_SZ (typically  [0xC0] bytes)
-//      - _T01_EEL_SZ (typically [(0x200 + (2 * _T01_EEL_NUM_VARS))] bytes)
+//      - _T01_EEL_SZ (typically [(0x200 + (2 * _T01_EEL_NUM_VARS))] bytes) 
 //      - _T02_FDL_SZ (typically  [0xA0] bytes)
 //      - _T02_EEL_SZ (typically [(0x100 + (2 * _T02_EEL_NUM_VARS))] bytes)
 //      - _T04_FDL_SZ (typically  [0x88] bytes)
 //   If no Self-RAM reservation is required for the device leave it set to 0x0.
 //
 // #5 - Optional: optimize memory reservation for EEL
-//      The template reserves the amount of Self-RAM for the maximum number
-//      of variables. This amount can be reduced to meet each application's
-//      requirements. (refer to `note2` and `note3` of the r20ut2944 document)
+//      The template instructs to reserve the amount of Self-RAM for the
+//      maximum number of variables. 
+//      This amount can be reduced to meet each application's requirements. 
+//      (refer to `note2` and `note3` of the r20ut2944 document)
 //      This can be significant as it reserves 2 bytes per variable.
 //      Examples:
 //           T01_EEL w/   1 variable  : 512 + 2 * 1   =  514 bytes (~50%)
