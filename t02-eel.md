@@ -244,7 +244,7 @@ void main(void)
 **20.** By default, the ICF Trio configuration reserves the memory to work with the maximum amount of variables allowed by the library. For this case, open the [trio_lnkrR5F104xE.icf](https://github.com/sharpgeek/icf_trio_config/blob/master/trio_lnkR5F104xE.icf) or corresponding file and then reduce the amount of **_T02_EEL_NUM_VARS** to __4__, in order to significantly save on resource usage. The Self-RAM usage for EEL variables goes from 384 bytes to 264 bytes (a 31.25% reduction), as follows:
 ```c
 // Maximum number of variables for EEPROM Emulation Layer Libraries
-define symbol _T01_EEL_NUM_VARS = 256; // [1~256 variables]
+define symbol _T01_EEL_NUM_VARS = 255; // [1~255 variables]
 define symbol _T02_EEL_NUM_VARS = 4;   // [1~64  variables] 
 ```
 
