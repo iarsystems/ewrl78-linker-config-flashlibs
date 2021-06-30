@@ -1,19 +1,76 @@
+// This template can be customized to meet any RL78 (R5F1xx) device.
+
+// Instructions:
+// #1 - Define _FLASH_END:
+//   Flash(KB) -- FINAL_FLASH_ADDRESS
+//           4 -> 0x00FFF
+//           8 -> 0x01FFF
+//          12 -> 0x02FFF
+//          16 -> 0x03FFF
+//          24 -> 0x05FFF
+//          32 -> 0x07FFF
+//          48 -> 0x0BFFF
+//          64 -> 0x0FFFF
+//          96 -> 0x17FFF
+//         128 -> 0x1FFFF
+//         192 -> 0x2FFFF
+//         256 -> 0x3FFFF
+//         384 -> 0x5FFFF
+//         512 -> 0x7FFFF
+
+// #2 - Define _RAM_START:
+//    RAM (KB) -- RAM_INITIAL_ADDRESS
+//        0.50 -> 0xFFD00
+//        0.75 -> 0xFFC00
+//           1 -> 0xFFB00
+//        1.50 -> 0xFF900
+//           2 -> 0xFF700
+//        2.50 -> 0xFF500
+//           3 -> 0xFF300
+//           4 -> 0xFEF00
+//        5.50 -> 0xFE900
+//           6 -> 0xFE700
+//           8 -> 0xFDF00
+//          10 -> 0xFD700
+//          12 -> 0xFCF00
+//          16 -> 0xFBF00
+//          20 -> 0xFAF00
+//          24 -> 0xF9F00
+//          26 -> 0xF9700
+//          32 -> 0xF7F00
+//          48 -> 0xF3F00
+
+// #3 - Define _DATAFLASH_SZ
+//      Choose the option (0 || 2K || 4K || 8K || 16K) according to the device.
+
+// #4 - Define the following Self-RAM size requirements according
+//      To the document r20ut2944ejXXXX_rl78
+//      - _T01_FSL_SZ (typically 0x400 bytes)
+//      - _T01_FDL_SZ (typically 0x0C0 bytes)
+//      - _T01_EEL_SZ (typically (0x200 + (2 * _T01_EEL_NUM_VARS)) bytes)
+//      - _T02_FDL_SZ (typically 0xA0 bytes)
+//      - _T02_EEL_SZ (typically (0x100 + (2 * _T02_EEL_NUM_VARS)) bytes)
+//      - _T04_FDL_SZ (typically 0x88 bytes)
+//   If no Self-RAM reservation is required for the device leave it set to 0x0.
+
+// #5 - Save the .icf template with an appropriate name for the device/series.
+
 // Specific: R5F1---TEMPLATE
 define symbol _FLASH_END    = 0x[FINAL_FLASH_ADDRESS] ;
-define symbol _RAM_START    = 0x[RAM INITIAL ADDRESS] ;
-define symbol _DATAFLASH_SZ = [2K,4K,8K] ;
+define symbol _RAM_START    = 0x[RAM_INITIAL_ADDRESS] ;
+define symbol _DATAFLASH_SZ = [0 || 2K || 4K || 8K || 16K] ;
 export symbol _DATAFLASH_SZ;
 
 // Maximum number of variables for EEPROM Emulation Layer Libraries
 define symbol _T01_EEL_NUM_VARS = 255; // [1~255]
 define symbol _T02_EEL_NUM_VARS = 64;  // [1~64]
 
-// Flash Libraries Self RAM  (referenced in r20ut2944ej0305_rl78.pdf)
+// Flash Libraries Self-RAM  (refer to r20ut2944ej0305_rl78.pdf)
 define symbol _T01_FSL_SZ   = 0x0;
 define symbol _T01_FDL_SZ   = 0x0;
-define symbol _T01_EEL_SZ   = (0x200 + (2 * _T01_EEL_NUM_VARS));
+define symbol _T01_EEL_SZ   = 0x0;
 define symbol _T02_FDL_SZ   = 0x0;
-define symbol _T02_EEL_SZ   = (0x100 + (2 * _T02_EEL_NUM_VARS));
+define symbol _T02_EEL_SZ   = 0x0;
 define symbol _T04_FDL_SZ   = 0x0;
 
 include "common.icf";
