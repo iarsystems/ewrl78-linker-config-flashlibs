@@ -61,7 +61,7 @@ In order to tremendously simplify this process, the __ICF Trio__ mostly automate
 
 The following sections are going to serve as a straightforward step-by-step guide containing what is considered to be near the minimal actions that should be taken from scratch to configure a project to use the __ICF Trio__.
 
-As reference, the RL78/G14 MCU (PN# __[R5F104LEAFA][url-R5F104LEAFA]__) will be used alongside the most popular __RL78 Flash Libraries__ combinations. Even then, the following steps should be similarly applicable to other RL78 targets.
+As reference, the RL78/G14 MCU (PN# __[R5F104LEAFA][url-r5f104leafa]__) will be used alongside the most popular __RL78 Flash Libraries__ combinations. Even then, the following steps should be similarly applicable to other RL78 targets.
 
 ## Required Software 
 
@@ -93,9 +93,9 @@ The following software components were successfuly usable alongside the __ICF Tr
 > __Note__
 > * When installing the IAR Embedded Workbench for RL78, the installer also will offer the possibility to install a code generator tool named [AP4](https://www.renesas.com/products/software-tools/tools/code-generator/ap4-applilet.html). The AP4 is a GUI-based code generator that can generate peripheral drivers in C source containing driver functions for some of the RL78 targets.
 
-**2.** For the purposes of this general guide, the selected target will be a general purpose RL78/G14 (PN# __[R5F104LEAFA](https://www.renesas.com/products/microcontrollers-microprocessors/rl78/rl78g1x/rl78g14/device/R5F104LEAFA.html)__). The target belongs to the *RL78/G14 Series*. The G14 Series uses a previous version of the AP4, the [Applilet3 for RL78](https://www.renesas.com/software/D4000916.html) configuration tool, which should then be installed.
+**2.** For the purposes of this general guide, the selected target will be a general purpose RL78/G14 (PN# __[R5F104LEAFA][url-r5f104leafa]__). The target belongs to the *RL78/G14 Series*. The G14 Series uses a previous version of the AP4, the [Applilet3 for RL78][url-applilet3] configuration tool, which should then be installed.
 
-**3.** Install [Git for Windows](https://git-scm.com/download/win) on its defaults.
+**3.** Install [Git for Windows][url-git4win] on its defaults.
 
 ### Applilet3 base project creation
 
@@ -166,7 +166,7 @@ If it is a new question, feel free to post it [here][url-repo-new-issue].
 [url-repo-new-issue]: https://github.com/IARSystems/ewrl78-linker-config-flashlibs/issues/new
 [url-repo-old-issue]: https://github.com/IARSystems/ewrl78-linker-config-flashlibs/issues?q=is%3Aissue+is%3Aopen%7Cclosed
 
-[url-R5F104LEAFA]: https://www.renesas.com/products/microcontrollers-microprocessors/rl78/rl78g1x/rl78g14/device/R5F104LEAFA.html
+[url-r5f104leafa]: https://www.renesas.com/rl78g14
 
 [url-ewrl78]: https://www.iar.com/ewrl78
 [url-applilet3]: https://www.renesas.com/us/en/document/applilet3-rl78-v12000?language=en
