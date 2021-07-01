@@ -50,7 +50,7 @@ The __RL78 Flash Libraries__ flavors may be provided as one of the following lib
 
 ## Self-RAM 
 
-Typically for every combination of RL78 MCU and __RL78 Flash Library__, the programmer would need to refer to the *Renesas Electronics*'  **[Application Note 2944](https://www.renesas.com/us/en/document/mah/rl78-family-self-ram-list-flash-self-programming-library)** in order to know if the chosen combination will require some specific RAM range to be reserved, therefore the chosen combination can function properly.
+Typically for every combination of RL78 MCU and __RL78 Flash Library__, the programmer would need to refer to the *Renesas Electronics*'  **[Application Note document r20ut2944](https://www.renesas.com/us/en/document/mah/rl78-family-self-ram-list-flash-self-programming-library)** in order to know if the chosen combination will require some specific RAM range to be reserved, therefore the chosen combination can function properly.
 
 Self-RAM refers to the aforementioned RAM area, which __must__ be reserved on some cases, when relying on the RL78 MCU's self-programming capabilities.
 
@@ -61,16 +61,14 @@ In order to tremendously simplify this process, the __ICF Trio__ mostly automate
 
 The following sections are going to serve as a straightforward step-by-step guide containing what is considered to be near the minimal actions that should be taken from scratch to configure a project to use the __ICF Trio__.
 
-As reference, the RL78/G14 MCU (PN# __[R5F104LEAFA][R5F104LEAFA-url]__) will be used alongside the most popular __RL78 Flash Libraries__ combinations. Even then, the following steps should be similarly applicable to other RL78 targets.
-
-[R5F104LEAFA-url]: https://www.renesas.com/products/microcontrollers-microprocessors/rl78/rl78g1x/rl78g14/device/R5F104LEAFA.html
+As reference, the RL78/G14 MCU (PN# __[R5F104LEAFA][url-R5F104LEAFA]__) will be used alongside the most popular __RL78 Flash Libraries__ combinations. Even then, the following steps should be similarly applicable to other RL78 targets.
 
 ## Required Software 
 
 The following software components were successfuly usable alongside the __ICF Trio__:
-- [IAR Embedded Workbench for RL78 version 4.20](https://www.iar.com/iar-embedded-workbench/#!?architecture=RL78) 
-- [Git for Windows](https://git-scm.com/download/win) 
-- [Applilet3 for RL78](https://www.renesas.com/software/D4000916.html) 
+- [IAR Embedded Workbench for RL78 version 4.20][url-ewrl78]
+- [Git for Windows][url-git4win] 
+- [Applilet3 for RL78][url-applilet3]
 - A __RL78 Flash Library__ of your choice, downloadable from the Renesas Electronics Europe "MyPages": 
    - The download requires [pre-registration](https://www2.renesas.eu/products/micro/download/index.html/auth/register)
    - or [sign-in](https://www2.renesas.eu/products/micro/download/index.html/auth/login) for registered users
@@ -79,28 +77,18 @@ The following software components were successfuly usable alongside the __ICF Tr
 
 | __RL78 Flash Library__ | __Documentation__          | __Symbol__            | __Reserves Self-RAM for the...__         |
 | :--------------------: | :------------------------: | :-------------------: | :--------------------------------------- |
-| [T01-FSL][t01-fsl-url] | [T01-FSL][t01-fsl-doc-url] | `__RESERVE_T01_FSL=1` | ...__T01-FSL__ Code Flash Library        |
-| [T01-FDL][t0x-xxl-url] | [T01-FDL][t01-fdl-doc-url] | `__RESERVE_T01_FDL=1` | ...__T01-FDL__ Data Flash Library        |
-| [T01-EEL][t0x-xxl-url] | [T01-EEL][t01-eel-doc-url] | `__RESERVE_T01_EEL=1` | ...__T01-EEL__ EEPROM Emulation Library  |
-| [T02-FDL][t0x-xxl-url] | [T02-FDL][t02-fdl-doc-url] | `__RESERVE_T02_FDL=1` | ...__T02-FDL__ Tiny Data Flash Library   |
-| [T02-EEL][t0x-xxl-url] | [T02-EEL][t02-eel-doc-url] | `__RESERVE_T02_EEL=1` | ...__T02-EEL__ EEPROM Emulation Library  |
-| [T04-FDL][t0x-xxl-url] | [T04-FDL][t04-fdl-doc-url] | `__RESERVE_T04_FDL=1` | ...__T04-FDL__ Pico Flash Lbrary         |
-
-[t01-fsl-url]:     https://www2.renesas.eu/products/micro/download/?oc=SelfLib_RL78
-[t0x-xxl-url]:     https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78
-[t01-fsl-doc-url]: https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0016ED0105_RL78.pdf
-[t01-fdl-doc-url]: https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0034ED0101.pdf
-[t01-eel-doc-url]: https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0128ED0101_RL78.pdf
-[t02-fdl-doc-url]: https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0061ED0120_RL78.pdf
-[t02-eel-doc-url]: https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0070ED0105_RL78.pdf
-[t04-fdl-doc-url]: https://www.renesas.com/eu/en/doc/DocumentServer/011/R01US0055ED0112.pdf
-
+| [T01-FSL][url-t01-fsl] | [T01-FSL][url-t01-fsl-doc] | `__RESERVE_T01_FSL=1` | ...__T01-FSL__ Code Flash Library        |
+| [T01-FDL][url-t0x-xxl] | [T01-FDL][url-t01-fdl-doc] | `__RESERVE_T01_FDL=1` | ...__T01-FDL__ Data Flash Library        |
+| [T01-EEL][url-t0x-xxl] | [T01-EEL][url-t01-eel-doc] | `__RESERVE_T01_EEL=1` | ...__T01-EEL__ EEPROM Emulation Library  |
+| [T02-FDL][url-t0x-xxl] | [T02-FDL][url-t02-fdl-doc] | `__RESERVE_T02_FDL=1` | ...__T02-FDL__ Tiny Data Flash Library   |
+| [T02-EEL][url-t0x-xxl] | [T02-EEL][url-t02-eel-doc] | `__RESERVE_T02_EEL=1` | ...__T02-EEL__ EEPROM Emulation Library  |
+| [T04-FDL][url-t0x-xxl] | [T04-FDL][url-t04-fdl-doc] | `__RESERVE_T04_FDL=1` | ...__T04-FDL__ Pico Flash Lbrary         |
 
 ## Usage Guidelines 
 
 ### Install the tools  
 
-**1.** Install the [IAR Embedded Workbench for RL78](https://www.iar.com/iar-embedded-workbench/#!?architecture=RL78).
+**1.** Install the [IAR Embedded Workbench for RL78][url-ewrl78].
 
 > __Note__
 > * When installing the IAR Embedded Workbench for RL78, the installer also will offer the possibility to install a code generator tool named [AP4](https://www.renesas.com/products/software-tools/tools/code-generator/ap4-applilet.html). The AP4 is a GUI-based code generator that can generate peripheral drivers in C source containing driver functions for some of the RL78 targets.
@@ -132,9 +120,9 @@ The following software components were successfuly usable alongside the __ICF Tr
 **8.** Start the __IAR Embedded Workbench for RL78__, save the the Workspace (_.eww_) on the same project folder which was created at the chosen `Place`. This folder can (and will) be referred by __IAR Embedded Workbench__ through its built-in environment variable __$PROJ_DIR$__.
 
 > __Note__
-> * The __$PROJ_DIR$__ is an argument variable which can be conveniently used refer to relative pathnames when accessing the project's resources in the storage media. With __IAR Embedded Workbench__, you can use a wide range of built-in argument variables, as well as create your own. For more information search for __[Argument Variables][argvars-url]__ on the [__IAR Embedded Workbench IDE Project Management and Building Guide__][argvars-url].
+> * The __$PROJ_DIR$__ is an argument variable which can be conveniently used refer to relative pathnames when accessing the project's resources in the storage media. With __IAR Embedded Workbench__, you can use a wide range of built-in argument variables, as well as create your own. For more information search for __[Argument Variables][url-argvars]__ on the [__IAR Embedded Workbench IDE Project Management and Building Guide__][url-argvars].
 
-[argvars-url]: https://netstorage.iar.com/SuppDB/Public/UPDINFO/014217/ew/doc/EWRL78_IDEGuide.ENU.pdf#page=82
+
 
 **9.** Choose `Project` → `Create New Project...` and create an empty RL78 project. Save it on the project's __$PROJ_DIR$__ location.
 
@@ -171,8 +159,25 @@ From this point you can now choose one of the examples below, which contains fur
 | [T02-EEL](t02-eel.md) | Creates a program which uses the T02-EEL Library and its corresponding dependency, the T02-FDL library. It exercises storing and retrieving data from the __EEL pool__ as well as from the __FDL pool__, both located into the RL78 __Data Flash__ |
 
 ---
-If you have questions regarding this repository contents, you can start by checking its [issue tracker][repo-old-issue-url] for the previously asked questions.
-If it is a new question, feel free to post it [here][repo-new-issue-url].
+If you have questions regarding this repository contents, you can start by checking its [issue tracker][url-repo-old-issue] for the previously asked questions.
+If it is a new question, feel free to post it [here][url-repo-new-issue].
 
-[repo-new-issue-url]: https://github.com/IARSystems/ewrl78-linker-config-flashlibs/issues/new
-[repo-old-issue-url]: https://github.com/IARSystems/ewrl78-linker-config-flashlibs/issues?q=is%3Aissue+is%3Aopen%7Cclosed
+<!-- links -->
+[url-repo-new-issue]: https://github.com/IARSystems/ewrl78-linker-config-flashlibs/issues/new
+[url-repo-old-issue]: https://github.com/IARSystems/ewrl78-linker-config-flashlibs/issues?q=is%3Aissue+is%3Aopen%7Cclosed
+
+[url-R5F104LEAFA]: https://www.renesas.com/products/microcontrollers-microprocessors/rl78/rl78g1x/rl78g14/device/R5F104LEAFA.html
+
+[url-ewrl78]: https://www.iar.com/ewrl78
+[url-applilet3]: https://www.renesas.com/us/en/document/applilet3-rl78-v12000?language=en
+[url-git4win]: https://git-scm.com/download/win
+[url-argvars]: https://netstorage.iar.com/SuppDB/Public/UPDINFO/014217/ew/doc/EWRL78_IDEGuide.ENU.pdf#page=82
+
+[url-t01-fsl]:     https://www2.renesas.eu/products/micro/download/?oc=SelfLib_RL78
+[url-t0x-xxl]:     https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78
+[url-t01-fsl-doc]: https://www2.renesas.eu/products/micro/download/?oc=SelfLib_RL78#documentInfo
+[url-t01-fdl-doc]: https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78#documentInfo
+[url-t01-eel-doc]: https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78#documentInfo
+[url-t02-fdl-doc]: https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78#documentInfo
+[url-t02-eel-doc]: https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78#documentInfo
+[url-t04-fdl-doc]: https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78#documentInfo
