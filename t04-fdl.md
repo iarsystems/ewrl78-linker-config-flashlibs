@@ -2,6 +2,13 @@
 
 You can refer to the previous setup steps [here](README.md#usage-guidelines).
 
+**12.** Back to the __IAR Embedded Workbench for RL78__, go to the Project Options, `Linker` → `Config` → `Override default` and select the corresponding `trio_lnk<device>.icf` for the target device in use. In this example, the __R5F104LEA__ target will be used, so the [trio_lnkR5F104xE.icf](trio_lnkR5F104xE.icf) will be selected:
+```
+$PROJ_DIR$\ewrl78-linker-config-flashlibs\trio_lnkR5F104xE.icf
+```
+
+>:bulb: Each target device has its own memory reservation requirements. In order to get the best out of the trio configurations, please choose the appropriate `trio_lnk<device>.icf` linker configuration for the actual `<device>` you are using in your project, directly from the repository you cloned inside the project's directory (`$PROJ_DIR$\ewrl78-linker-config-flashlibs`).
+
 **13.** On the same `Linker` → `Config` configuration page of the project options, add the following line containing the symbol definition in `Configuration file symbol definition`:
 
 ```
