@@ -142,11 +142,6 @@ The following software components were successfuly usable alongside the __ICF Tr
  > remote: Total 58 (delta 36), reused 34 (delta 30), pack-reused 0
  > Unpacking objects: 100% (58/58), done.
  >~~~
- 
-**12.** Back to the __IAR Embedded Workbench for RL78__, go to the Project Options, `Linker` → `Config` → `Override default` and select the appropriate __.icf__ for the target. In this example, the __R5F104LEA__ target will be used, so the [trio_lnkR5F104xE.icf](trio_lnkR5F104xE.icf) will be selected:
-```
-$PROJ_DIR$\ewrl78-linker-config-flashlibs\trio_lnkR5F104xE.icf
-```
 
 From this point you can now choose one of the examples below, which contains further steps for creating simple programs which exercise the Flash Memories while using different combinations of the most popular __RL78 Flash Libraries__.
 
