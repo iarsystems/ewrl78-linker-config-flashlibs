@@ -1,43 +1,36 @@
 ## Project Setup Example for T02-EEL (tiny EEL) 
+You can refer to the previous setup steps [here](README.md#how-to-use-the-icf-trio).
 
-You can refer to the previous setup steps [here](README.md#usage-guidelines).
+- Install the [RL78 T02-EEL Library](https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78) you have [previously downloaded](README.md#pre-requisites). During the installation, select to install for the __IAR Compiler v2.10__ (or later) on the project folder (`$PROJ_DIR$`). The installer will create a folder named `EEL\IAR_210` (or similar).
 
-**12.** Back to the __IAR Embedded Workbench for RL78__, go to the Project Options, `Linker` → `Config` → `Override default` and select the corresponding `trio_lnk<device>.icf` for the target device in use. In this example, the __R5F104LEA__ target will be used, so the [trio_lnkR5F104xE.icf](trio_lnkR5F104xE.icf) will be selected:
-```
-$PROJ_DIR$\ewrl78-linker-config-flashlibs\trio_lnkR5F104xE.icf
-```
+### Linker configuration
+- In the IDE, go to the __Project__ → __Options__ → __Linker__ → __Config__ → __Linker configuration file__.
 
->:bulb: Each target device has its own memory reservation requirements. In order to get the best out of the trio configurations, please choose the appropriate `trio_lnk<device>.icf` linker configuration for the actual `<device>` you are using in your project, directly from the repository you cloned inside the project's directory (`$PROJ_DIR$\ewrl78-linker-config-flashlibs`).
+- Tick __Override default__ and select the corresponding __trio_lnk\<device\>.icf__ for the target device in use. In this example, we are using the R5F104LEA target, so the [trio_lnkR5F104xE.icf](trio_lnkR5F104xE.icf) will be selected: `$PROJ_DIR$\ewrl78-linker-config-flashlibs\trio_lnkR5F104xE.icf`
 
-**13.** On the same `Linker` → `Config` configuration page of the project options, add the following line containing the symbol definition in `Configuration file symbol definition`:
+- In the same configuration tab, append `__RESERVE_T02_EEL=1` to the __Configuration file symbol definition__, as below: 
 
-```
-__RESERVE_T02_EEL=1
-```
+![T02 Linker Configuration](images/reserve_t02_eel.png)
 
-![Reserve T02-EEL](images/reserve_t02_eel.png)
-
-**14.** Install the [RL78 T02-EEL Library](https://www2.renesas.eu/products/micro/download/?oc=EEPROM_EMULATION_RL78) you've previously downloaded from its distribution site. Install it for the __IAR Compiler v2.10__ (or later) on the project folder (__$PROJ_DIR$__). The installer will create folders within the __$PROJ_DIR$__ named __EEL\IAR_210__ (or similar). Adjust it accordingly if necessary, as this installer may create a slighty different folder names depending on the version available.  
-
-> __Note__ 
-> * Before downloading the library using the link above, [__Sign in__](https://www2.renesas.eu/products/micro/download/index.html/auth/login) to the European Downloads "MyPages" site ([here](https://www2.renesas.eu/products/micro/download/index.html)) if necessary. The credentials for __"MyPages"__ may differ from the __"MyRenesas"__ credentials.
-
-**15.** In `Linker` → `Library` → `Additional libraries`, add the following lines:
+- In __Linker__ → __Library__ → __Additional libraries__, add the following line:
 ```
 $PROJ_DIR$\EEL\IAR_210\FDL\lib\fdl.a
 $PROJ_DIR$\EEL\IAR_210\EEL\lib\eel.a
 ```
-**16.** In `C/C++ Compiler` → `Preprocessor` → `Additional include directories`, add the following lines:
+
+- In __C/C++ Compiler__ → __Preprocessor__ → __Additional include directories__, add the following 2 lines:
 ```
 $PROJ_DIR$\applilet3_src
 $PROJ_DIR$\EEL\IAR_210\FDL\lib
 $PROJ_DIR$\EEL\IAR_210\EEL\lib
 ```
 
+> __Note__ Each target device has its own memory reservation requirements. In order to get the best out of the trio configurations, please choose the appropriate `trio_lnk<device>.icf` linker configuration for the actual device you are using in your project, directly from the repository you cloned inside the project's directory (`$PROJ_DIR$\ewrl78-linker-config-flashlibs`).
 
-## Putting the Library to some use
+### Example source code
+Now it is time to update the application with this example source code below that exercises some of the library's capabilities. The execution flow exercises some basic flash operations using both __EEL__ and __FDL__ layers.
 
-**17.** Open the __Renesas_AP\cg_src\r_main.c__ and insert the __tiny FDL__ and __tiny EEL__ headers between the two __Applilet3__'s comment guards, as below:
+- Open the `Renesas_AP\cg_src\r_main.c` and insert the FDL and EEL headers between the generated comment guards for the "user code for include", as below:
 ```c
 ...
 /* Start user code for include. Do not edit comment generated here */
@@ -50,7 +43,7 @@ $PROJ_DIR$\EEL\IAR_210\EEL\lib
 ...
 ```
 
-**18.** Add the following code snippet between the two __Applilet3__'s comment guards. These contents are going to be preserved if the drivers are eventually regenerated for any reason, by the __Applilet3__ tool.
+- Add the following snippet of code in the _Global variables and functions_, as below:
 ```c
 /********************************...**
 Global variables and functions
@@ -123,7 +116,7 @@ fdl_configdata_t rd_configdata;
 /* End user code. Do not edit comment generated here */
 ```
 
-**19.** On the __Renesas_AP\cg_src\r_main.c__, replace the entire __main()__ function with the following code snippet. The execution flow exercises some basic flash operations using both __EEL__ and __FDL__ layers.
+- Replace the original `main()` function with the following code snippet.
 ```c
 void main(void)
 {
@@ -248,39 +241,40 @@ void main(void)
     /* End user code. Do not edit comment generated here */
 }
 ```
-**20.** By default, the ICF Trio configuration reserves the memory to work with the maximum amount of variables allowed by the library. For this case, open the [trio_lnkrR5F104xE.icf](trio_lnkR5F104xE.icf) or corresponding file and then reduce the amount of **_T02_EEL_NUM_VARS** to __4__, in order to significantly save on resource usage. The Self-RAM usage for EEL variables goes from 384 bytes to 264 bytes (a 31.25% reduction), as follows:
+
+- By default, the ICF Trio configuration reserves the memory to work with the maximum amount of variables allowed by the library. For this case, open the [trio_lnkrR5F104xE.icf](trio_lnkR5F104xE.icf) or corresponding file and then reduce the amount of `T02_EEL_NUM_VARS` to `4`, in order to significantly save on resource usage. The Self-RAM usage for EEL variables goes from `384` bytes to `264` bytes (a 31.25% reduction), as follows:
 ```c
 // Maximum number of variables for EEPROM Emulation Layer Libraries
 define symbol _T01_EEL_NUM_VARS = 255; // [1~255 variables]
 define symbol _T02_EEL_NUM_VARS = 4;   // [1~64  variables] 
 ```
 
-## Now to the project's hardware setup and debugging
+## Configuring and debugging the project
 
-**21.** Go to project options, `General Options` → `Target` → `Device` and choose the desired part number. In this case the __R5F104LE__ will be selected.
+- Go to the Project Options, __General Options__ → __Target__ → __Device__ and choose the desired part number.
 
-**22.** In the project options, `Debugger` → `Setup` → `Driver` and choose the emulator you have. Typically __TK__, __E1__ or __E2 Lite__ depending on the emulator in use.
+- In the project options, __Debugger__ → __Setup__ → __Driver__ and choose the emulator you have. Typically _TK_, _E1_ or _E2 Lite_ depending on the emulator in use.
 
-**23.** Start a new C-SPY debugging session by choosing `Project` → `Download and Debug`. If necessary, choose the right __Power supply__ voltage for the target system in the __Emulator Hardware Setup__ window. In order to function properly, as the __LVD__ was set to 3.63V, the choosen voltage was 5V.
+- Start a new C-SPY debugging session by choosing __Project__ → __Download and Debug__. If necessary, choose the right _Power supply_ voltage for the _Target system_ in the _Emulator Hardware Setup window_. In this case, as the __LVD__ was set to `3.63V`, the choosen voltage was `5V`.
 
-**24.** Check the `[x] Erase flash before next ID check` and then press `OK` to close the __Hardware Setup__ window.
+- Tick the __Erase flash before next ID check__ checkbox.
 
-**25.** By default, C-SPY will execute the application until it reaches a breakpoint in the beginning of the __main()__ function. Insert a breakpoint near the __FSL_Close()__ call in the end of the __main()__ function. 
+- Click _OK_ to close the _Hardware Setup window_.
 
-**26.** Activate the `Watch Window` by selecting `View` → `Watch` → `Watch1`. This window will allow you to add expressions to watch the contents of the global variables used to hold different record types used to test the __EEL Pool__. `<Click to add>` __rd_recordXX__ (where __XX__ can be 01, 04, 16 or 64) and also __wr_recordXX__(where __XX__ can be 01, 04, 16 or 64).
+- By default, C-SPY will execute the application until it reaches a breakpoint in the beginning of the `main()` function. Insert a breakpoint near the `FDL_Close()` call in the end of the `main()` function.
 
-**27.**  Hit `Go` on the Debug toolbar (or press <kbd>F5</kbd>) and verify if the variables contents match.
+- Activate the _Watch1 window_ by selecting __View__ → __Watch__ → __Watch1__. This window will allow you to add expressions to watch the contents of global variables used to hold different record types used to test the _EEL pool_.
 
-> __Note__
-> * When performing the contents matching step, remember that the __EEL_REC64_ID__ variable had its contents updated after its contents updated of __wr_record64__ to the contents of the __w2_record64__ before it has been read with the __EEL_CMD_READ__ to be read back into the __rd_record64__ variable.
+- __\<Click to add\>__ all the `rd_recordNN` and `wr_recordNN` variables (`NN` can be `01`|`04`|`16`|`64`).
 
-**26.** The same verification should be performed between __wr_configdata__ and __rd_configdata__ available from the __FDL Pool__.
+- Activate the _Memory1 window_ by selecting  __View__ → __Memory__ → __Memory1__. _Go to_ the beginning of the _FDL pool_ in this example, at address `0xF1C00`.
 
-> __Note__ 
-> * The config data written into the __FDL Pool__ can also be directly seen at the __Data Flash__. Activate the __Memory Window__ by selecting `View` → `Memory` → `Memory1` and `Go to` the address __0xF1C00__, which is the offset __0x0000__ of the __FDL Pool__.
->
-> ![T02-FDL Memory View](/images/t02_fdl_memory1.png)
+- Hit __Go__ (<kbd>F5</kbd>) on the _Debug toolbar_ to execute the program until it reaches the breakpoint.
 
----
+- In the _Watch1 window_, verify if the contents of the variables `rd_recordNN` and `wr_recordNN` do match.
 
-[Back to the main ICF Trio Documentation Page](README.md#coding-examples)
+- In the _Memory1 window_, verify the data written to the _FDL pool_ @ `0xF1C00`.
+
+![T02-FDL Memory View](/images/t02_fdl_memory1.png)
+
+[< ICF Trio documentation page](README.md#examples)
