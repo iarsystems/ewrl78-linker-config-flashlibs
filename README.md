@@ -21,7 +21,7 @@ In this section you can understand how the __ICF Trio__ components fit together.
 | [self_ram.icf](self_ram.icf) | The third is automatically included by __common.icf__ to evaluate the [RAM reservation symbol](README.md#ram-reservation-symbols) used by the linker to reserve the appropriate amount of RAM (for _Self-RAM_) when using the Trio. |
 
 ### Flash Library Flavors
-The Renesas RL78 MCUs require specific set of library(/ies) to enable usage of their Flash Memories.
+The Renesas RL78 MCUs require specific set of libraries to enable usage of their Flash Memories.
 
 Renesas Electronics provides the __RL78 Flash Libraries__ in 3 different flavors:
 - The __FSL__ (Flash Self-Programming Library) does program the RL78's __Code Flash__. 
