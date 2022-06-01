@@ -34,15 +34,16 @@ The __RL78 Flash Libraries__ flavors may be provided as one of the following lib
 - The **T02** (Type02, also known as **Tiny**) are the balanced ones, providing the main functionalities at expense of less resources when compared with the T01 Libraries.
 - The **T04** (Type04, also known as **Pico**) is the one providing only the bare essential functionalities. This library type offers the lowest resource usage footprint. Usually this is the suitable choice for the scenarios where the chosen RL78 target comes with constrained memory resources.
 
-> __Note__ For further information regarding the complete feature set provided in each of these flash libraries, refer to their respective [documentation](#ram-reservation-symbols).
-
-
 ### Self-RAM 
 Typically for every combination of RL78 MCU and __RL78 Flash Library__, the programmer would need to refer to the _Renesas Electronics_'  __[Application Note document r20ut2944][url-ree-selfram]__ in order to know if the chosen combination will require some specific RAM range to be reserved, therefore the chosen combination can function properly.
 
 Self-RAM refers to the aforementioned RAM area, which __must__ be reserved on some cases, when relying on the RL78 MCU's self-programming capabilities.
 
 In order to tremendously simplify this process, the __ICF Trio__ mostly automates it, by taking advantage of every advanced linker configuration directive available to override the default linker configuration, while following the requirements defined in the aforementioned Application Note. 
+
+> __Note__ For further information regarding the complete feature set and requirements for for each of these flash libraries, refer to their respective [documentation](#ram-reservation-symbols).
+
+
 
 
 ## How to use the ICF Trio
