@@ -100,7 +100,7 @@ Applilet3 and AP4 are GUI-based code generators that can generate startup and pe
 
 ![Workspace](images/7workspace.png)
 
-- __Clone__ this repository inside `$PROJ_DIR$`.
+- [__Clone__](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) this repository inside `$PROJ_DIR$`.
 > __Note__ Alternatively this repository can be downloaded as a `.zip` archive via the __Code__ button.
 
 ## Examples
