@@ -106,8 +106,6 @@ Applilet3 and AP4 are GUI-based code generators that can generate startup and pe
 ## Examples
 From this point you can now choose one of the examples below, which contains further steps for creating simple programs which exercise the Flash Memories while using different combinations of the most popular __RL78 Flash Libraries__.
 
-## Coding Examples
-
 | __Example__                       | __Description__ |
 | :-------------------------------- | :-------------- |
 | [T04-FDL](t04-fdl.md) | Creates a simple program which uses the T04-FDL Library in order to store some data in the RL78 __Data Flash__ | 
