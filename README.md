@@ -28,7 +28,7 @@ Renesas Electronics provides the __RL78 Flash Libraries__ in 3 different flavors
 - The __FDL__ (Flash Data Library) does program the RL78's __Data Flash__.
 - The __EEL__ (EEPROM Emulation Library) does emulate EEPROM behaviour on the RL78's __Data Flash__. It provides an extra layer of functionalities on top of its corresponding companion FDL Library Type (T01 or T02 - [explained below](README.md#flash-library-types)). It provides transparent [__Wear Leveling__](https://en.wikipedia.org/wiki/Wear_leveling) among the provisioned __Data Flash__ blocks which may, in practice, virtually raise the amount of possible rewrites.
 
-## Flash Library Types 
+### Flash Library Types 
 The __RL78 Flash Libraries__ flavors may be provided as one of the following library types:
 - The **T01** (Type01, also known as **Full**) are the fully fledged Flash Libraries.
 - The **T02** (Type02, also known as **Tiny**) are the balanced ones, providing the main functionalities at expense of less resources when compared with the T01 Libraries.
