@@ -1,40 +1,34 @@
 ## Project Setup Example for T01-FSL  
+You can refer to the previous setup steps [here](README.md#how-to-use-the-icf-trio).
 
-You can refer to the previous setup steps [here](README.md#usage-guidelines).
+- Install the [RL78 T01-FSL Library](https://www2.renesas.eu/products/micro/download/?oc=SelfLib_RL78) you have [previously downloaded](README.md#pre-requisites). During the installation, select to install for the __IAR Compiler v2.10__ (or later) on the project folder (`$PROJ_DIR$`). The installer will create a folder named `FSL\IAR_210` (or similar).
 
-**12.** Back to the __IAR Embedded Workbench for RL78__, go to the Project Options, `Linker` → `Config` → `Override default` and select the corresponding `trio_lnk<device>.icf` for the target device in use. In this example, the __R5F104LEA__ target will be used, so the [trio_lnkR5F104xE.icf](trio_lnkR5F104xE.icf) will be selected:
-```
-$PROJ_DIR$\ewrl78-linker-config-flashlibs\trio_lnkR5F104xE.icf
-```
+### Linker configuration
+- In the IDE, go to the __Project__ → __Options__ → __Linker__ → __Config__ → __Linker configuration file__.
 
->:bulb: Each target device has its own memory reservation requirements. In order to get the best out of the trio configurations, please choose the appropriate `trio_lnk<device>.icf` linker configuration for the actual `<device>` you are using in your project, directly from the repository you cloned inside the project's directory (`$PROJ_DIR$\ewrl78-linker-config-flashlibs`).
+- Tick __Override default__ and select the corresponding __trio_lnk\<device\>.icf__ for the target device in use. In this example, we are using the R5F104LEA target, so the [trio_lnkR5F104xE.icf](trio_lnkR5F104xE.icf) will be selected: `$PROJ_DIR$\ewrl78-linker-config-flashlibs\trio_lnkR5F104xE.icf`
 
-**13.** On the same `Linker` → `Config` configuration page of the project options, add the following line containing the symbol definition in `Configuration file symbol definition`:
+- In the same configuration tab, append `__RESERVE_T01_FSL=1` to the __Configuration file symbol definition__, as below: 
 
-```
-__RESERVE_T01_FSL=1
-```
+![T04 Linker Configuration](images/reserve_t01_fsl.png)
 
-![Reserve T01-FSL](images/reserve_t01_fsl.png)
-
-**14.** Install the [RL78 T01-FSL Library](https://www2.renesas.eu/products/micro/download/?oc=SelfLib_RL78) downloadable from its distribution site. Install it for the __IAR Compiler v2.10__ (or later) on the project folder (__$PROJ_DIR$__). The installer will create a folders within the __$PROJ_DIR$__ named __FSL\IAR_210__ (or similar). Adjust it accordingly if necessary, as this installer may create a slighty different folder name depending on the version available.  
-
-> __Note__ 
-> * Before downloading the library using the link above, [__Sign in__](https://www2.renesas.eu/products/micro/download/index.html/auth/login) to the European Downloads "MyPages" site ([here](https://www2.renesas.eu/products/micro/download/index.html)) if necessary. The credentials for __"MyPages"__ may differ from the __"MyRenesas"__ credentials.
-
-**15.** In `Linker` → `Library` → `Additional libraries`, add the following line:
+- In __Linker__ → __Library__ → __Additional libraries__, add the following line:
 ```
 $PROJ_DIR$\FSL\IAR_210\lib\fsl.a
 ```
-**16.** In `C/C++ Compiler` → `Preprocessor` → `Additional include directories`, add the following 2 lines:
+
+- In __C/C++ Compiler__ → __Preprocessor__ → __Additional include directories__, add the following 2 lines:
 ```
 $PROJ_DIR$\applilet3_src
 $PROJ_DIR$\FSL\IAR_210\lib
 ```
 
-## Putting the Library to some use
+> __Note__ Each target device has its own memory reservation requirements. In order to get the best out of the trio configurations, please choose the appropriate `trio_lnk<device>.icf` linker configuration for the actual device you are using in your project, directly from the repository you cloned inside the project's directory (`$PROJ_DIR$\ewrl78-linker-config-flashlibs`).
 
-**17.** Open the __Renesas_AP\cg_src\r_main.c__ and insert the FSL headers between the two __Applilet3__'s comment guards, as below:
+### Example source code
+Now it is time to update the application with this example source code below that exercises some of the library's capabilities.
+
+- Open the `Renesas_AP\cg_src\r_main.c` and insert the FSL headers between the generated comment guards for the "user code for include", as below:
 ```c
 ...
 /* Start user code for include. Do not edit comment generated here */
@@ -46,7 +40,7 @@ $PROJ_DIR$\FSL\IAR_210\lib
 ...
 ```
 
-**18.** Add the global arrays __WriteStringFAR__, __WriteStringNEAR__ and __ReadString__ between the two __Applilet3__'s comment guards. These global variables are going to be preserved if the drivers are eventually regenerated for any reason, by the __Applilet3__ tool.
+- In the _Global variables and functions_ section_, add the `WriteStringFAR[]`, `WriteStringNEAR[]` and `ReadString[]` between the comment guards, as below:
 ```c
 /********************************...**
 Global variables and functions
@@ -76,7 +70,7 @@ __root __near __no_init fsl_u08 ReadStringNEAR[STRING_SZ];
 /* End user code. Do not edit comment generated here */
 ```
 
-**19.** On the __Renesas_AP\cg_src\r_main.c__, replace the __main()__ function with the following code snippet:
+- Replace the original `main()` function with the following code snippet:
 ```c
 void main(void)
 {
@@ -128,31 +122,33 @@ void main(void)
 }
 
 ```
+## Configuring and debugging the project
+- Go to the Project Options, __General Options__ → __Target__ → __Device__ and choose the desired part number.
 
-## Now to the project's hardware setup and debugging
+- In the project options, __Debugger__ → __Setup__ → __Driver__ and choose the emulator you have. Typically _TK_, _E1_ or _E2 Lite_ depending on the emulator in use.
 
-**20.** Go to project options, `General Options` → `Target` → `Device` and choose the desired part number. In this case the __R5F104LE__ will be selected.
+- Start a new C-SPY debugging session by choosing __Project__ → __Download and Debug__. If necessary, choose the right _Power supply_ voltage for the _Target system_ in the _Emulator Hardware Setup window_. In this case, as the __LVD__ was set to `3.63V`, the choosen voltage was `5V`.
 
-**21.** In the project options, `Debugger` → `Setup` → `Driver` and choose the emulator you have. Typically __TK__, __E1__ or __E2 Lite__ depending on the debug probe in use.
+- Tick the __Erase flash before next ID check__ checkbox.
 
-**22.** Start a new C-SPY debugging session by choosing `Project` → `Download and Debug`. If necessary, choose the right __Power supply__ voltage for the Target system in the __Emulator Hardware Setup__ window. In this case, as the __LVD__ was set to 3.63V, the choosen voltage was 5V.
+- Click _OK_ to close the _Hardware Setup window_.
 
-**23.** Check the `[x] Erase flash before next ID check` and then press `OK` to close the __Hardware Setup__ window.
+- By default, C-SPY will execute the application until it reaches a breakpoint in the beginning of the `main()` function. Insert a breakpoint near the `FSL_Close()` call in the end of the `main()` function.
 
-**24.** By default, C-SPY will execute the application until it reaches a breakpoint in the beginning of the __main()__ function. Insert a breakpoint near the __FSL_Close()__ call in the end of the __main()__ function.
+- Activate the _Watch window_ by selecting __View__ → __Watch__ → __Watch1__. This window will allow you to add expressions to watch the contents of global variables.
 
-**25.** Activate the __Watch Window__ by selecting `View` → `Watch` → `Watch1`. This window will allow you to add expressions to watch the contents of global variables. `<Click to add>` __ReadStringNEAR__, __ReadStringFAR__ and __WriteString__.
+- __\<Click to add\>__ `ReadStringNEAR`, `ReadStringFAR` and `WriteString`.
 
-**26.**  Hit `Go` on the __Debug Toolbar__ (or press <kbd>F5</kbd>) and verify if the variables contents match.
+- Hit __Go__ (<kbd>F5</kbd>) on the _Debug toolbar_.
 
-> __Notes__ 
-> * The data written into the __Code Flash__ can also be directly seen by activating the __Memory Window__. In this case, select `View` → `Memory` → `Memory1` and `Go to` the address __&ReadStringFAR__.
+- In the _Watch1 window_, verify if the contents of the variables `ReadString` and `WriteString` match.
+
+> __Note__ The data written into the __Code Flash__ can also be directly seen by activating the __Memory Window__. In this case, select __View__ → __Memory__ → __Memory1__ and _Go to_ the address `&ReadStringFAR`.
 >
 > ![T01-FSL Memory1 View](images/t01_fsl_memory1.png) 
 >
-> * The same data will be also available from the Near Memory __(0xF0000-0xFFFFF)__, which provides a computationally cheaper way of accessing the same data. This area is addressable by 16-bit pointers. Activate a new __Memory Window__ by selecting `View` → `Memory` → `Memory2` and `Go to` the address __&ReadStringNEAR__ to visit the __Mirrored Data__.
+> The same data will be also available from the Near Memory __(`0xF0000`-`0xFFFFF`)__, which provides a computationally cheaper way of accessing the same data. This area is addressable by 16-bit pointers. Activate a new _Memory window_ by selecting __View__ → __Memory__ → __Memory2__ and _Go to_ the address `&ReadStringNEAR` to visit the __Mirrored Data__.
 >
 > ![T01-FSL Memory2 View](images/t01_fsl_memory2.png) 
 
----
-[Back to the main ICF Trio Documentation Page](README.md#coding-examples)
+[< ICF Trio documentation page](README.md#examples)
