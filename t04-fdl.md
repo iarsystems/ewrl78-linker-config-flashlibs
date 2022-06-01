@@ -145,7 +145,7 @@ void main(void)
 
 ## Configuring and debugging the project
 
-- Go to the Project Options, __General Options__ → __Target__ → __Device__ and choose the desired part number. In this case the `R5F104LE` will be selected.
+- Go to the Project Options, __General Options__ → __Target__ → __Device__ and choose the desired part number.
 
 - In the project options, __Debugger__ → __Setup__ → __Driver__ and choose the emulator you have. Typically _TK_, _E1_ or _E2 Lite_ depending on the emulator in use.
 
