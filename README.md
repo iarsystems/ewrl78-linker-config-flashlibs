@@ -6,11 +6,10 @@ The __ICF Trio__ project was developed for __IAR Embedded Workbench for Renesas 
 ### Benefits 
 * Provides simplified setup for new projects relying on any of the __RL78 Flash Libraries__.
 * Reduces the developer's efforts when linker reconfiguration is needed, specially when retargeting or switching to a different __RL78 Flash Library__.
-* Offers contiguous __Code Flash__ which leads to improved flexibility for the compiled objects placement during the linking stage. This is achieved by taking advantage of the linker capability of placing all the `__near` constants from the __ending__ of the __Code Flash__'s mirrorable area.
-* The improved object placement strategy might lead to substantial reduction of fragmentation of the __Code Flash__. This effect becomes more evident on RL78 targets with smaller __Code Flash__.
+* Takes advantage of advanced IAR ILINK Linker capabilities for placing `__near` constants from the ending of the mirrorable area. This feature can significantly reduce section fragmentation on RL78 devices equipped with small __Code Flash__.
 
 ### Linker Configuration Trio Layout Specification
-In this section you can understand how the __ICF Trio__ components fit together.
+In this section you will find an overview of how the __ICF Trio__ components fit together.
 
 ![ICF Trio layout](images/icf_trio_layout.png)
 
