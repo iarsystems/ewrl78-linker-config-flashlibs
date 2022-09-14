@@ -6,11 +6,12 @@ The __ICF Trio__ project was developed for __IAR Embedded Workbench for Renesas 
 ### Benefits 
 * Provides simplified setup for new projects relying on any of the __RL78 Flash Libraries__.
 * Reduces the developer's efforts when linker reconfiguration is needed, specially when retargeting or switching to a different __RL78 Flash Library__.
-* Offers contiguous __Code Flash__ which leads to improved flexibility for the compiled objects placement during the linking stage. This is achieved by taking advantage of the linker capability of placing all the `__near` constants from the __ending__ of the __Code Flash__'s mirrorable area.
-* The improved object placement strategy might lead to substantial reduction of fragmentation of the __Code Flash__. This effect becomes more evident on RL78 targets with smaller __Code Flash__.
+* Takes advantage of advanced IAR ILINK Linker capabilities by placing the sections related to the `__near` constants [from the ending of the mirrorable area](https://github.com/IARSystems/ewrl78-linker-config-flashlibs/blob/master/common.icf#L106-L110). This feature can result in greater flexibility thanks to the contiguous flash space left for the user program's sections placement on RL78 devices equipped with smaller __Code Flash__.
+
+![rl78-linker](https://user-images.githubusercontent.com/54443595/190103306-42763b46-b0f4-489f-9f9d-419779da4122.svg)
 
 ### Linker Configuration Trio Layout Specification
-In this section you can understand how the __ICF Trio__ components fit together.
+In this section you will find an overview of how the __ICF Trio__ components fit together.
 
 ![ICF Trio layout](images/icf_trio_layout.png)
 
@@ -118,6 +119,10 @@ From this point you can now choose one of the examples below, which contains fur
 Found an issue or have a suggestion related to [__this__][url-repo] repository? Feel free to use the public issue tracker.
 - Do not forget to take a look at [earlier issues][url-repo-issue-old].
 - If creating a [new][url-repo-issue-new] issue, please describe it in detail.
+
+## Disclaimer
+The information in this repository is subject to change without notice and does not represent a commitment on any part of IAR Systems. While the information contained 
+herein is assumed to be accurate, IAR Systems assumes no responsibility for any errors or omissions.
 
 <!-- links -->
 [url-repo]:           https://github.com/iarsystems/ewrl78-linker-config-flashlibs
