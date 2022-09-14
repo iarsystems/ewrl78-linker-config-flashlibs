@@ -120,6 +120,10 @@ Found an issue or have a suggestion related to [__this__][url-repo] repository? 
 - Do not forget to take a look at [earlier issues][url-repo-issue-old].
 - If creating a [new][url-repo-issue-new] issue, please describe it in detail.
 
+## Disclaimer
+The information in this repository is subject to change without notice and does not represent a commitment on any part of IAR Systems. While the information contained 
+herein is assumed to be accurate, IAR Systems assumes no responsibility for any errors or omissions.
+
 <!-- links -->
 [url-repo]:           https://github.com/iarsystems/ewrl78-linker-config-flashlibs
 [url-repo-issue-new]: https://github.com/iarsystems/ewrl78-linker-config-flashlibs/issues/new
