@@ -117,7 +117,7 @@ Applilet3 and AP4 are GUI-based code generators that can generate startup and pe
 ## Examples
 Select one of the available examples below to continue.
 
-Each example contains further steps for creating a simple program that exercises storing/retrieving data using different combinations of the most popular __RL78 Flash Libraries__.
+Each example contains further steps for creating a simple program that consists of storing/retrieving persistent data using different combinations of the most popular __RL78 Flash Libraries__.
 
 | __Example__                       | __Creates a program which will...__                                                |
 | :-------------------------------- | :--------------------------------------------------------------------------------- |
