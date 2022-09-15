@@ -115,13 +115,15 @@ Applilet3 and AP4 are GUI-based code generators that can generate startup and pe
 
 
 ## Examples
-Select one of the available examples below to continue. Each example contains further steps for creating a simple program that exercises storing/retrieving data using different combinations of the most popular __RL78 Flash Libraries__.
+Select one of the available examples below to continue.
 
-| __Example__                       | __Create a program which will...__ |
-| :-------------------------------- | :-------------- |
-| [T04-FDL](t04-fdl.md)             | ...use the T04-FDL to exercise the __Data Flash__ | 
-| [T01-FSL](t01-fsl.md)             | ...use the T01-FSL to exercise the __Code Flash__ |
-| [T02-EEL](t02-eel.md)             | ...use the T02-EEL and the T02-FDL to create an __EEL pool__ and a __FDL pool__ in the __Data Flash__ |
+Each example contains further steps for creating a simple program that exercises storing/retrieving data using different combinations of the most popular __RL78 Flash Libraries__.
+
+| __Example__                       | __Creates a program which will...__                                                |
+| :-------------------------------- | :--------------------------------------------------------------------------------- |
+| [T04-FDL](t04-fdl.md)             | ...exercise the __Data Flash__                                                     | 
+| [T01-FSL](t01-fsl.md)             | ...exercise the __Code Flash__                                                     |
+| [T02-EEL & T02-FDL](t02-eel.md)   | ...exercise the __Data Flash__ partitioned into an __EEL pool__ and a __FDL pool__ |
 
 
 ## Issues
