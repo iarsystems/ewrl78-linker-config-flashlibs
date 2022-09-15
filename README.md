@@ -100,7 +100,8 @@ Applilet3 and AP4 are GUI-based code generators that can generate startup and pe
 
 ### Setup the project in the IAR Embedded Workbench
 - Start the __IAR Embedded Workbench for RL78__, save the the Workspace (`.eww`) on the same project folder which was created at the chosen _Place_. This folder can (and will) be referred by __IAR Embedded Workbench__ through its built-in environment variable `$PROJ_DIR$`.
-> __Note__ The `$PROJ_DIR$` is a project's internal argument variable which translates to the directory containing the `.ewp` file. It is oftentimes used to refer to project's resources using relative pathnames that will not change if the project is moved to a different location. The __IAR Embedded Workbench__ brings an extensive range of [built-in argument variables][url-argvars].
+
+> __Note__ The `$PROJ_DIR$` is an internal argument variable which translates to the directory containing the project file (`.ewp`). It is oftentimes used to refer to the project's source files, header files and libraries with relative pathnames (e.g., `$PROJ_DIR$/<dir>/<file>`). The __IAR Embedded Workbench__ offers a selection of other useful [built-in argument variables][url-argvars].
 
 - Choose __Project__ → __Create New Project...__ and create an _Empty RL78 project_. Save it on the project's `$PROJ_DIR$` location.
 
@@ -109,16 +110,20 @@ Applilet3 and AP4 are GUI-based code generators that can generate startup and pe
 ![Workspace](images/7workspace.png)
 
 - [__Clone__](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) this repository inside `$PROJ_DIR$`.
+
 > __Note__ Alternatively this repository can be downloaded as a `.zip` archive via the __Code__ button.
 
-## Examples
-From this point you can now choose one of the examples below, which contains further steps for creating simple programs which exercise the Flash Memories while using different combinations of the most popular __RL78 Flash Libraries__.
 
-| __Example__                       | __Description__ |
-| :-------------------------------- | :-------------- |
-| [T04-FDL](t04-fdl.md) | Creates a simple program which uses the T04-FDL Library in order to store some data in the RL78 __Data Flash__ | 
-| [T01-FSL](t01-fsl.md) | Creates a simple program which uses the T01-FSL Library in order to store some data in the RL78 __Code Flash__ |
-| [T02-EEL](t02-eel.md) | Creates a program which uses the T02-EEL Library and its corresponding dependency, the T02-FDL library. It exercises storing and retrieving data from the __EEL pool__ as well as from the __FDL pool__, both located into the RL78 __Data Flash__ |
+## Examples
+Select one of the available examples below to continue.
+
+Each example contains further steps for creating a simple program that consists of storing/retrieving persistent data using different combinations of the most popular __RL78 Flash Libraries__.
+
+| __Example__                       | __Creates a program which will...__                                                |
+| :-------------------------------- | :--------------------------------------------------------------------------------- |
+| [T04-FDL](t04-fdl.md)             | ...exercise the __Data Flash__                                                     | 
+| [T01-FSL](t01-fsl.md)             | ...exercise the __Code Flash__                                                     |
+| [T02-EEL & T02-FDL](t02-eel.md)   | ...exercise the __Data Flash__ partitioned into an __EEL pool__ and a __FDL pool__ |
 
 
 ## Issues
