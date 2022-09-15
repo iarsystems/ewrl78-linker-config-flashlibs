@@ -61,7 +61,9 @@ Regardless, similar steps can be used with other combinations of RL78 targets an
 ### Pre-requisites
 In this walkthrough, the following components already installed or downloaded:
 - Default installation of [IAR Embedded Workbench for Renesas RL78 v4.21][url-ewrl78].
-- A __RL78 Flash Library__ of your choice, downloadable from the _Renesas Electronics Europe "MyPages"_. The download requires [pre-registration][url-ree-register] or [sign-in][url-ree-signin] if you already are a registered user.
+- A __RL78 Flash Library__ of your choice, distributed exclusively by Renesas Electronics Corporation and downloadable from the _Renesas Electronics Europe "MyPages"_ site. The download requires [pre-registration][url-ree-register] or [sign-in][url-ree-signin] if you already are a registered user.
+
+>__Note__ The RL78 Flash Library installers wizard will ask you to "select your region". The libraries compatible with the IAR Embedded Workbench for Renesas RL78 v2.10+ (`<library-name>.a`) are only available for "__America/Europe/Middle East/Africa__" as of this writing.
 
 ### RAM reservation symbols
 The table below lists the available libraries alongside their respective __documentation__ as well as the project's required linker __symbol__ used for RAM reservation.
