@@ -50,7 +50,7 @@ define region HOTPLUGIN_RAM = NOWHERE;
 define region EXCLUDE_ROM_REGION = OCD_ROM_AREA;
 define region EXCLUDE_RAM_REGION = HOTPLUGIN_RAM | OCD_TRACE_RAM | SELF_RAM;
 
-define region ROM_near = mem:[from _FLASH_START to (_FLASH_END & 0xEFFFF)] - EXCLUDE_ROM_REGION;
+define region ROM_near = mem:[from _FLASH_START to (_FLASH_END & 0x0FFFF)] - EXCLUDE_ROM_REGION;
 define region ROM_far  = mem:[from _FLASH_START to _FLASH_END]             - EXCLUDE_ROM_REGION;
 define region ROM_huge = mem:[from _FLASH_START to _FLASH_END]             - EXCLUDE_ROM_REGION;
 
